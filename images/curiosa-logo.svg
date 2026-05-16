@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Curiosa Science Museum</title>
+  <desc id="logo-desc">The Curiosa Science Museum logo: an atom mark with two orbital rings in amber and teal on a navy circle, beside the wordmark Curiosa and subtitle Science Museum.</desc>
+
+  <!-- Atom mark -->
+  <circle cx="28" cy="28" r="26" fill="#1a3a5c"/>
+  <ellipse cx="28" cy="28" rx="24" ry="9.5" fill="none" stroke="#f4a935" stroke-width="2.2" transform="rotate(-32 28 28)"/>
+  <ellipse cx="28" cy="28" rx="24" ry="9.5" fill="none" stroke="#2db89e" stroke-width="1.8" transform="rotate(90 28 28)"/>
+  <!-- Amber electron (top) -->
+  <circle cx="28" cy="4.5" r="4" fill="#f4a935"/>
+  <!-- Teal electron (right) -->
+  <circle cx="50" cy="39" r="3" fill="#2db89e"/>
+  <!-- Nucleus -->
+  <circle cx="28" cy="28" r="6" fill="#ffffff"/>
+  <circle cx="28" cy="28" r="3" fill="#1a3a5c"/>
+
+  <!-- Wordmark -->
+  <text
+    x="64" y="24"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="23"
+    font-weight="700"
+    fill="#1a3a5c"
+    letter-spacing="-0.5">Curiosa</text>
+
+  <!-- Subtitle -->
+  <text
+    x="65" y="41"
+    font-family="'Fredoka', 'Nunito', sans-serif"
+    font-size="10"
+    font-weight="600"
+    fill="#4a6a8a"
+    letter-spacing="2">SCIENCE MUSEUM</text>
+</svg>
