@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sparky the Robot — Curiosa Science Museum Mascot</title>
+  <meta name="description" content="Meet Sparky, the official animated robot mascot of the Curiosa Science Museum. Sparky loves science, robotics, and welcoming curious visitors of all ages." />
+  <link rel="icon" type="image/svg+xml" href="../images/curiosa-icon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: #f4a935;
+      color: #0f1f30;
+      font-weight: 700;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      z-index: 9999;
+      transition: top 0.2s;
+      font-family: 'Fredoka', sans-serif;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── Focus visible ── */
+    :focus-visible {
+      outline: 3px solid #f4a935;
+      outline-offset: 3px;
+    }
+
+    /* ── Mascot layout ── */
+    .sparky-section {
+      padding-block: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .sparky-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* ── Mood controls ── */
+    .mood-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 420px;
+    }
+
+    .mood-btn {
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.45em 1.2em;
+      border-radius: 999px;
+      border: 2px solid #1a3a5c;
+      background: transparent;
+      color: #1a3a5c;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .mood-btn:hover            { background: #1a3a5c; color: #ffffff; }
+    .mood-btn:focus-visible    { outline: 3px solid #f4a935; outline-offset: 3px; }
+    .mood-btn[aria-pressed="true"] {
+      background: #1a3a5c;
+      color: #ffffff;
+    }
+
+    /* ── Mood status (live region) ── */
+    .mood-status {
+      font-size: 0.9rem;
+      color: #4a6a8a;
+      min-height: 1.5em;
+      text-align: center;
+    }
+
+    /* ── SVG keyframe animations ── */
+    @keyframes sp-bob      { 0%,100%{transform:translateY(0)}    50%{transform:translateY(-8px)}  }
+    @keyframes sp-wave     { 0%,100%{transform:rotate(-10deg)}   50%{transform:rotate(25deg)}     }
+    @keyframes sp-blink    { 0%,90%,100%{transform:scaleY(1)}    95%{transform:scaleY(0.08)}      }
+    @keyframes sp-pulse    { 0%,100%{opacity:1}                  50%{opacity:0.3}                 }
+    @keyframes sp-antenna  { 0%,100%{transform:rotate(-4deg)}    50%{transform:rotate(4deg)}      }
+    @keyframes sp-scan     { 0%{transform:translateY(-60px)}     100%{transform:translateY(60px)} }
+    @keyframes sp-jump     { 0%,100%{transform:translateY(0) rotate(0)}
+                             25%{transform:translateY(-18px) rotate(-5deg)}
+                             75%{transform:translateY(-18px) rotate(5deg)} }
+    @keyframes sp-float    { 0%{transform:translateY(0) scale(1);opacity:1}
+                             100%{transform:translateY(-60px) scale(0.3);opacity:0} }
+    @keyframes sp-dance-l  { 0%,100%{transform:rotate(-15deg)}   50%{transform:rotate(5deg)}     }
+    @keyframes sp-dance-r  { 0%,100%{transform:rotate(15deg)}    50%{transform:rotate(-5deg)}    }
+    @keyframes sp-think    { 0%,100%{opacity:0;transform:scale(0.5)} 50%{opacity:1;transform:scale(1)} }
+    @keyframes sp-spin     { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+    @keyframes sp-glow-r   { 0%,100%{opacity:0.15} 50%{opacity:0.7} }
+
+    /* ── Default animation classes ── */
+    .sp-body     { animation: sp-bob     2.4s ease-in-out infinite;
+                   transform-origin: 100px 190px; }
+    .sp-arm-l    { animation: sp-wave    2s   ease-in-out infinite;
+                   transform-origin:  58px 148px; }
+    .sp-arm-r    { transform-origin: 142px 148px; }
+    .sp-antenna  { animation: sp-antenna 2.2s ease-in-out infinite;
+                   transform-origin: 100px  42px; }
+    .sp-eye-l    { animation: sp-blink   4s   ease-in-out infinite;
+                   transform-origin:  78px  72px; }
+    .sp-eye-r    { animation: sp-blink   4s   ease-in-out infinite 0.1s;
+                   transform-origin: 122px  72px; }
+    .sp-pulse    { animation: sp-pulse   0.8s ease-in-out infinite; }
+    .sp-scan     { animation: sp-scan    2s   linear     infinite; }
+    .sp-led-1    { animation: sp-pulse   1s   ease-in-out infinite 0s; }
+    .sp-led-2    { animation: sp-pulse   1s   ease-in-out infinite 0.15s; }
+    .sp-led-3    { animation: sp-pulse   1s   ease-in-out infinite 0.3s; }
+    .sp-led-4    { animation: sp-pulse   1s   ease-in-out infinite 0.45s; }
+    .sp-led-5    { animation: sp-pulse   1s   ease-in-out infinite 0.6s; }
+    .sp-ear-l    { animation: sp-pulse   1.5s ease-in-out infinite; }
+    .sp-ear-r    { animation: sp-pulse   1.5s ease-in-out infinite 0.75s; }
+
+    /* Hidden elements shown by JS mood class */
+    .sp-glow     { opacity: 0; transition: opacity 0.3s; }
+    .sp-stars    { opacity: 0; transition: opacity 0.3s; }
+    .sp-thoughts { opacity: 0; transition: opacity 0.3s; }
+
+    /* ── Mood state classes on <figure> ── */
+    figure.excited .sp-body     { animation: sp-jump    0.7s ease-in-out infinite; }
+    figure.excited .sp-arm-l    { animation: sp-wave    0.5s ease-in-out infinite; }
+    figure.excited .sp-arm-r    { animation: sp-wave    0.5s ease-in-out infinite reverse; }
+    figure.excited .sp-pulse    { animation: sp-pulse   0.3s ease-in-out infinite; }
+    figure.excited .sp-glow     { opacity: 1; animation: sp-glow-r 1s ease-in-out infinite; }
+    figure.excited .sp-stars    { opacity: 1; }
+
+    figure.dancing .sp-body     { animation: sp-bob     0.6s ease-in-out infinite; }
+    figure.dancing .sp-arm-l    { animation: sp-dance-l 0.6s ease-in-out infinite; }
+    figure.dancing .sp-arm-r    { animation: sp-dance-r 0.6s ease-in-out infinite; }
+    figure.dancing .sp-stars    { opacity: 1; }
+    figure.dancing .sp-pulse    { animation: sp-spin    0.5s linear     infinite;
+                                   transform-origin: 100px 16px; }
+
+    figure.thinking .sp-body    { animation: sp-bob     4s   ease-in-out infinite; }
+    figure.thinking .sp-arm-l   { animation: none; }
+    figure.thinking .sp-thoughts{ opacity: 1; }
+    figure.thinking .sp-pulse   { animation: sp-pulse   2s   ease-in-out infinite; }
+
+    figure.sad .sp-body         { animation: sp-bob     5s   ease-in-out infinite; }
+    figure.sad .sp-arm-l        { animation: none; }
+    figure.sad .sp-pulse        { animation: sp-pulse   3s   ease-in-out infinite; }
+
+    /* ── Embed info box ── */
+    .embed-info {
+      background: #eaf4f9;
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      max-width: 480px;
+      width: 90%;
+    }
+    .embed-info h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      color: #1a3a5c;
+      margin-bottom: 0.5rem;
+    }
+    .embed-info p {
+      font-size: 0.85rem;
+      color: #4a6a8a;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .sparky-section { padding-block: 2rem; }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .sp-body, .sp-arm-l, .sp-arm-r, .sp-antenna,
+      .sp-eye-l, .sp-eye-r, .sp-pulse, .sp-scan,
+      .sp-led-1, .sp-led-2, .sp-led-3, .sp-led-4, .sp-led-5,
+      .sp-ear-l, .sp-ear-r,
+      figure.excited .sp-body, figure.excited .sp-arm-l,
+      figure.excited .sp-arm-r, figure.excited .sp-glow,
+      figure.dancing .sp-body, figure.dancing .sp-arm-l,
+      figure.dancing .sp-arm-r, figure.dancing .sp-pulse,
+      figure.thinking .sp-body, figure.sad .sp-body { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip to main content (WCAG 2.4.1) -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Shared site header -->
+  <header class="site-header">
+    <input type="checkbox" id="nav-checkbox" aria-hidden="true" />
+    <div class="container nav-wrapper">
+      <a href="../index.html" class="site-logo" aria-label="Curiosa Science Museum — Home">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="../images/curiosa-icon.svg" alt="" width="44" height="44" />
+        </div>
+        <div class="logo-text">Curiosa<span>Science Museum</span></div>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="exhibitions.html">Exhibitions</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="visit.html">Visit Us</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <label class="nav-toggle" for="nav-checkbox" aria-label="Toggle navigation menu">
+        <div class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </label>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Breadcrumb navigation -->
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Sparky the Mascot</span>
+      </nav>
+    </div>
+
+    <section class="sparky-section" aria-labelledby="sparky-heading">
+
+      <h1 id="sparky-heading" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,4vw,3rem);color:#1a3a5c;text-align:center;margin-bottom:0">
+        Meet Sparky!
+      </h1>
+      <p style="color:#4a6a8a;text-align:center;max-width:44ch;font-size:1rem;line-height:1.7">
+        The official robot mascot of the Curiosa Science Museum. Sparky loves experiments, discoveries, and welcoming curious minds of all ages.
+      </p>
+
+      <!-- SVG mascot wrapped in <figure> for semantics -->
+      <figure class="sparky-figure" id="sparkyFigure" aria-label="Sparky the robot mascot">
+
+        <svg id="sparkySVG"
+             viewBox="0 0 200 280"
+             width="200" height="280"
+             role="img"
+             aria-labelledby="sparky-svg-title sparky-svg-desc"
+             focusable="false">
+
+          <title id="sparky-svg-title">Sparky the robot mascot</title>
+          <desc  id="sparky-svg-desc">An animated friendly robot named Sparky with glowing yellow eyes, a teal LED mouth, amber antenna, and a chest screen showing science symbols. Sparky bobs, waves, and changes expression.</desc>
+
+          <defs>
+            <clipPath id="screenClip">
+              <rect x="62" y="108" width="76" height="52" rx="6"/>
+            </clipPath>
+          </defs>
+
+          <!-- Glow ring (excited mood) -->
+          <circle class="sp-glow" cx="100" cy="190" r="42"
+                  fill="none" stroke="#f4a935" stroke-width="4"/>
+
+          <!-- Drop shadow -->
+          <ellipse cx="100" cy="270" rx="38" ry="7"
+                   fill="#1a3a5c" opacity="0.12"/>
+
+          <!-- ══ BODY GROUP (bobs) ══ -->
+          <g class="sp-body">
+
+            <!-- Left arm -->
+            <g class="sp-arm-l">
+              <rect x="34" y="145" width="26" height="14" rx="7" fill="#1a3a5c"/>
+              <circle cx="34"  cy="152" r="9" fill="#0d2b4b"/>
+              <circle cx="34"  cy="152" r="5" fill="#2db89e"/>
+            </g>
+
+            <!-- Right arm -->
+            <g class="sp-arm-r">
+              <rect x="140" y="145" width="26" height="14" rx="7" fill="#1a3a5c"/>
+              <circle cx="166" cy="152" r="9" fill="#0d2b4b"/>
+              <circle cx="166" cy="152" r="5" fill="#2db89e"/>
+            </g>
+
+            <!-- Main body -->
+            <rect x="52" y="130" width="96" height="100" rx="18" fill="#1a3a5c"/>
+
+            <!-- Chest screen bezel -->
+            <rect x="62" y="108" width="76" height="52" rx="8" fill="#0d2b4b"/>
+            <rect x="65" y="111" width="70" height="46" rx="6" fill="#0a1a2e"/>
+
+            <!-- Screen: happy (default) -->
+            <g id="screenHappy" clip-path="url(#screenClip)">
+              <rect class="sp-scan" x="62" y="108" width="76" height="4"
+                    fill="#2db89e" opacity="0.25"/>
+              <circle cx="100" cy="134" r="14" fill="#2db89e" opacity="0.15"/>
+              <circle cx="94"  cy="130" r="2.5" fill="#2db89e"/>
+              <circle cx="106" cy="130" r="2.5" fill="#2db89e"/>
+              <path d="M92 136 Q100 143 108 136"
+                    fill="none" stroke="#2db89e" stroke-width="2" stroke-linecap="round"/>
+            </g>
+
+            <!-- Screen: science -->
+            <g id="screenScience" clip-path="url(#screenClip)" aria-hidden="true">
+              <rect x="65" y="111" width="70" height="46" rx="6" fill="#0a1a2e"/>
+              <text x="100" y="126" text-anchor="middle"
+                    font-size="9" fill="#f4a935" font-family="monospace">E = mc²</text>
+              <text x="100" y="138" text-anchor="middle"
+                    font-size="8" fill="#2db89e" font-family="monospace">H₂O + CO₂</text>
+              <text x="100" y="150" text-anchor="middle"
+                    font-size="8" fill="#8c4fd8" font-family="monospace">π = 3.14159</text>
+            </g>
+
+            <!-- Screen: sad -->
+            <g id="screenSad" clip-path="url(#screenClip)" aria-hidden="true">
+              <rect x="65" y="111" width="70" height="46" rx="6" fill="#0a1a2e"/>
+              <circle cx="94"  cy="130" r="2.5" fill="#4a6a8a"/>
+              <circle cx="106" cy="130" r="2.5" fill="#4a6a8a"/>
+              <path d="M92 141 Q100 135 108 141"
+                    fill="none" stroke="#4a6a8a" stroke-width="2" stroke-linecap="round"/>
+            </g>
+
+            <!-- Body bolts -->
+            <circle cx="66"  cy="198" r="4" fill="#0d2b4b"/>
+            <circle cx="134" cy="198" r="4" fill="#0d2b4b"/>
+
+            <!-- Chest badge -->
+            <rect x="78" y="175" width="44" height="20" rx="5" fill="#f4a935" opacity="0.92"/>
+            <text x="100" y="188" text-anchor="middle"
+                  font-size="9" fill="#0d2b4b" font-weight="bold"
+                  font-family="'Fredoka',sans-serif">SPARKY</text>
+
+            <!-- Teal accent stripe -->
+            <rect x="52" y="218" width="96" height="5" rx="2.5"
+                  fill="#2db89e" opacity="0.7"/>
+
+            <!-- LED mouth -->
+            <rect x="76" y="90" width="48" height="8" rx="4" fill="#0a1a2e"/>
+            <circle class="sp-led-1" cx="84"  cy="94" r="2" fill="#2db89e"/>
+            <circle class="sp-led-2" cx="92"  cy="94" r="2" fill="#2db89e"/>
+            <circle class="sp-led-3" cx="100" cy="94" r="2" fill="#2db89e"/>
+            <circle class="sp-led-4" cx="108" cy="94" r="2" fill="#2db89e"/>
+            <circle class="sp-led-5" cx="116" cy="94" r="2" fill="#2db89e"/>
+
+            <!-- Legs -->
+            <rect x="68"  y="228" width="22" height="34" rx="8" fill="#0d2b4b"/>
+            <rect x="110" y="228" width="22" height="34" rx="8" fill="#0d2b4b"/>
+
+            <!-- Feet -->
+            <rect x="62"  y="254" width="32" height="14" rx="7" fill="#1a3a5c"/>
+            <rect x="106" y="254" width="32" height="14" rx="7" fill="#1a3a5c"/>
+
+            <!-- ── HEAD ── -->
+            <!-- Neck -->
+            <rect x="86" y="90" width="28" height="16" rx="4" fill="#0d2b4b"/>
+
+            <!-- Head box -->
+            <rect x="52" y="42" width="96" height="68" rx="16" fill="#1a3a5c"/>
+
+            <!-- Visor accent -->
+            <rect x="57" y="56" width="86" height="4" rx="2"
+                  fill="#2db89e" opacity="0.4"/>
+
+            <!-- Left eye -->
+            <g class="sp-eye-l">
+              <rect x="64" y="62" width="28" height="20" rx="6" fill="#0a1a2e"/>
+              <circle cx="78" cy="72" r="7" fill="#f4a935"/>
+              <circle cx="78" cy="72" r="4" fill="#e8412f"/>
+              <circle cx="80" cy="70" r="1.5" fill="#ffffff" opacity="0.8"/>
+            </g>
+
+            <!-- Right eye -->
+            <g class="sp-eye-r">
+              <rect x="108" y="62" width="28" height="20" rx="6" fill="#0a1a2e"/>
+              <circle cx="122" cy="72" r="7" fill="#f4a935"/>
+              <circle cx="122" cy="72" r="4" fill="#e8412f"/>
+              <circle cx="124" cy="70" r="1.5" fill="#ffffff" opacity="0.8"/>
+            </g>
+
+            <!-- Antenna -->
+            <g class="sp-antenna">
+              <rect x="97" y="20" width="6" height="24" rx="3" fill="#0d2b4b"/>
+              <circle cx="100" cy="16" r="8" fill="#f4a935"/>
+              <circle cx="100" cy="16" r="5" fill="#e8412f"/>
+              <circle class="sp-pulse" cx="100" cy="16" r="3" fill="#f4a935"/>
+            </g>
+
+            <!-- Ear bolts -->
+            <circle cx="52"  cy="70" r="6" fill="#0d2b4b"/>
+            <circle class="sp-ear-l" cx="52"  cy="70" r="3" fill="#2db89e"/>
+            <circle cx="148" cy="70" r="6" fill="#0d2b4b"/>
+            <circle class="sp-ear-r" cx="148" cy="70" r="3" fill="#2db89e"/>
+
+          </g><!-- end sp-body -->
+
+          <!-- Floating stars (excited / dance moods) -->
+          <g class="sp-stars" aria-hidden="true">
+            <polygon style="animation:sp-float 1.8s ease-out infinite 0s"
+                     points="24,30 26,36 32,36 27,40 29,46 24,42 19,46 21,40 16,36 22,36"
+                     fill="#f4a935"/>
+            <polygon style="animation:sp-float 1.8s ease-out infinite 0.6s"
+                     points="172,20 174,26 180,26 175,30 177,36 172,32 167,36 169,30 164,26 170,26"
+                     fill="#2db89e"/>
+            <polygon style="animation:sp-float 1.8s ease-out infinite 1.2s"
+                     points="28,60 29.5,65 35,65 31,68 32.5,73 28,70 23.5,73 25,68 21,65 26.5,65"
+                     fill="#8c4fd8"/>
+          </g>
+
+          <!-- Thinking dots -->
+          <g class="sp-thoughts" aria-hidden="true">
+            <circle style="animation:sp-think 1.2s ease-in-out infinite 0s"
+                    cx="130" cy="30" r="5" fill="#4a6a8a"/>
+            <circle style="animation:sp-think 1.2s ease-in-out infinite 0.3s"
+                    cx="148" cy="22" r="6" fill="#4a6a8a"/>
+            <circle style="animation:sp-think 1.2s ease-in-out infinite 0.6s"
+                    cx="166" cy="12" r="8" fill="#4a6a8a"/>
+          </g>
+
+        </svg>
+
+        <figcaption style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#1a3a5c">
+          Sparky
+        </figcaption>
+
+      </figure>
+
+      <!-- Live region announces mood change to screen readers -->
+      <p class="mood-status" id="moodStatus" role="status" aria-live="polite">
+        Happy and ready to explore!
+      </p>
+
+      <!-- Mood control buttons — no inline JS, events attached in <script> below -->
+      <div class="mood-controls" role="group" aria-label="Change Sparky's mood">
+        <button class="mood-btn" data-mood="happy"    aria-pressed="true">Happy</button>
+        <button class="mood-btn" data-mood="excited"  aria-pressed="false">Excited</button>
+        <button class="mood-btn" data-mood="science"  aria-pressed="false">Science mode</button>
+        <button class="mood-btn" data-mood="dancing"  aria-pressed="false">Dance</button>
+        <button class="mood-btn" data-mood="thinking" aria-pressed="false">Thinking</button>
+        <button class="mood-btn" data-mood="sad"      aria-pressed="false">Sad</button>
+      </div>
+
+      <!-- Info box -->
+      <div class="embed-info" role="complementary" aria-label="About Sparky">
+        <h2>Add Sparky to any page</h2>
+        <p>
+          Copy <code>sparky-mascot.html</code> into your project and link to it, or
+          paste the <code>&lt;figure&gt;</code> block and the <code>&lt;style&gt;</code>
+          directly into any page. Sparky uses pure CSS animations — no JavaScript
+          frameworks, no external libraries. Call
+          <code>sparkySetMood('excited')</code> from any page script to trigger a mood.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Shared site footer -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-text" style="margin-bottom:var(--space-sm)">
+            Community<br>Science Museum
+          </div>
+          <p>Inspiring the next generation of scientists, explorers, and innovators since 1987.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="exhibitions.html">Exhibitions</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="visit.html">Plan a Visit</a></li>
+            <li><a href="get-involved.html">Get Involved</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Visit Info</h3>
+          <ul>
+            <li><a href="visit.html#hours">Opening Hours</a></li>
+            <li><a href="visit.html#tickets">Ticket Prices</a></li>
+            <li><a href="visit.html#access">Accessibility</a></li>
+            <li><a href="visit.html#getting-here">Getting Here</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+            <li><a href="get-involved.html#donate">Donate</a></li>
+            <li><a href="coming-soon.html">Press Room</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Curiosa Science Museum. All rights reserved.</p>
+        <p>
+          <a href="coming-soon.html" style="color:inherit">Privacy Policy</a> ·
+          <a href="coming-soon.html" style="color:inherit">Accessibility Statement</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!--
+    JS: event listeners only — NO inline onclick attributes.
+    Pure vanilla JS, no frameworks, no libraries.
+    Attached after DOM is ready (script at end of body).
+  -->
+  <script>
+    (function () {
+      var figure    = document.getElementById('sparkyFigure');
+      var status    = document.getElementById('moodStatus');
+      var buttons   = document.querySelectorAll('.mood-btn');
+
+      var screens = {
+        happy:    document.getElementById('screenHappy'),
+        science:  document.getElementById('screenScience'),
+        sad:      document.getElementById('screenSad'),
+      };
+
+      var moodLabels = {
+        happy:    'Happy and ready to explore!',
+        excited:  'WOW! Science is amazing!',
+        science:  'Did you know E = mc²?',
+        dancing:  'Time to celebrate science!',
+        thinking: 'Hmm... calculating...',
+        sad:      'No visitors yet today...',
+      };
+
+      var moodOrder = ['happy','excited','science','dancing','thinking','sad'];
+      var currentIdx = 0;
+
+      function showScreen(mood) {
+        Object.keys(screens).forEach(function (key) {
+          if (screens[key]) {
+            screens[key].style.opacity = (key === mood) ? '1' : '0';
+          }
+        });
+      }
+
+      function sparkySetMood(mood) {
+        figure.className = 'sparky-figure';
+        if (mood !== 'happy') figure.classList.add(mood);
+
+        showScreen(mood);
+        status.textContent = moodLabels[mood] || '';
+
+        buttons.forEach(function (btn) {
+          var pressed = btn.getAttribute('data-mood') === mood;
+          btn.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+        });
+
+        currentIdx = moodOrder.indexOf(mood);
+        if (currentIdx === -1) currentIdx = 0;
+      }
+
+      /* Attach click listeners — no inline onclick */
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          sparkySetMood(btn.getAttribute('data-mood'));
+        });
+      });
+
+      /* Clicking the SVG cycles through moods */
+      document.getElementById('sparkySVG').addEventListener('click', function () {
+        currentIdx = (currentIdx + 1) % moodOrder.length;
+        sparkySetMood(moodOrder[currentIdx]);
+      });
+
+      /* Keyboard: Enter/Space on SVG also cycles */
+      document.getElementById('sparkySVG').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          currentIdx = (currentIdx + 1) % moodOrder.length;
+          sparkySetMood(moodOrder[currentIdx]);
+        }
+      });
+
+      /* Expose globally so other pages can trigger moods */
+      window.sparkySetMood = sparkySetMood;
+
+      /* Set initial state */
+      sparkySetMood('happy');
+    }());
+  </script>
+
+</body>
+</html>

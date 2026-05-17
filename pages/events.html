@@ -3,94 +3,351 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Events & Workshops — Community Science Museum</title>
-  <meta name="description" content="Browse upcoming science workshops, holiday programmes, planetarium shows, and special events." />
+  <title>Events & Workshops — Curiosa Science Museum</title>
+  <meta name="description" content="Browse upcoming events, science workshops, holiday programmes, and special evenings at the Curiosa Science Museum. Fun for kids, families, and schools." />
+  <link rel="icon" type="image/svg+xml" href="../images/curiosa-icon.svg" />
   <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .event-filters {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-lg);
+    }
+    .filter-btn {
+      font-family: var(--ff-display);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      padding: 0.4em 1.1em;
+      border-radius: var(--radius-xl);
+      border: 2px solid var(--clr-primary);
+      background: transparent;
+      color: var(--clr-primary);
+      cursor: pointer;
+      transition: background-color var(--transition), color var(--transition);
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+    }
+    .month-group {
+      margin-bottom: var(--space-xl);
+    }
+    .month-heading {
+      font-family: var(--ff-display);
+      font-size: var(--fs-2xl);
+      color: var(--clr-primary);
+      padding-bottom: 0.5em;
+      border-bottom: 3px solid var(--clr-secondary);
+      margin-bottom: var(--space-md);
+    }
+    .event-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .highlight-banner {
+      background: linear-gradient(135deg, var(--clr-accent3) 0%, var(--clr-primary) 100%);
+      color: var(--clr-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-lg);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    .highlight-banner h2 { color: var(--clr-secondary); font-size: var(--fs-3xl); }
+    .highlight-banner p  { opacity: 0.85; margin-bottom: var(--space-md); }
+    .highlight-icon { font-size: 6rem; }
+    @media(max-width:600px){
+      .highlight-banner { grid-template-columns: 1fr; }
+      .highlight-icon { display: none; }
+    }
+  </style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to main content</a>
-  <div class="ann-bar">🎉 Free entry for under-12s all of July! &nbsp;<a href="visit.html">Plan your visit →</a></div>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="info-strip">
+    🎉 Free entry for under-12s all of July! &nbsp;<a href="visit.html">Plan your visit →</a>
+  </div>
+
   <header class="site-header">
-    <input type="checkbox" id="menu-toggle" hidden />
-    <div class="wrap nav-inner">
-      <a href="../index.html" class="logo" aria-label="Community Science Museum — home">
-        <div class="logo-mark" aria-hidden="true">🔭</div>
-        <div>Community<br><span>Science Museum</span></div>
+    <input type="checkbox" id="nav-checkbox" aria-hidden="true" />
+    <div class="container nav-wrapper">
+      <a href="../index.html" class="site-logo" aria-label="Curiosa Science Museum — Home">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="../images/curiosa-icon.svg" alt="" width="44" height="44" />
+        </div>
+        <div class="logo-text">Curiosa<span>Science Museum</span></div>
       </a>
       <nav aria-label="Main navigation">
-        <ul class="nav-list">
+        <ul class="nav-links">
           <li><a href="../index.html">Home</a></li>
           <li><a href="exhibitions.html">Exhibitions</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="visit.html">Visit</a></li>
+          <li><a href="events.html" class="active" aria-current="page">Events</a></li>
+          <li><a href="visit.html">Visit Us</a></li>
           <li><a href="get-involved.html">Get Involved</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <a href="visit.html" class="nav-cta">Plan Your Visit</a>
-      <label class="hamburger-label" for="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+      <label class="nav-toggle" for="nav-checkbox" aria-label="Toggle menu">
+        <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
+      </label>
     </div>
   </header>
-  <main id="main">
 
-    <section class="page-hero" aria-labelledby="page-h">
-      <div class="wrap">
-        <h1 id="page-h">Events &amp; Workshops</h1>
-        <p>From rocket building to star gazing — something incredible is always happening.</p>
+  <main id="main-content">
+
+    <section class="page-hero" aria-labelledby="events-heading">
+      <div class="container">
+        <h1 id="events-heading">Events & Workshops</h1>
+        <p>From rocket building to star gazing — something incredible is always happening at the museum.</p>
       </div>
     </section>
-    <div class="wrap"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Events</span></nav></div>
 
-    <section class="section" aria-labelledby="ev-main-h">
-      <div class="wrap">
-        <!-- Featured -->
-        <div style="background:linear-gradient(135deg,var(--navy),var(--violet));border-radius:var(--r3);padding:3rem;color:var(--white);margin-bottom:3rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Events</span>
+      </nav>
+    </div>
+
+    <section class="section" aria-labelledby="featured-event">
+      <div class="container">
+
+        <!-- Featured event banner -->
+        <div class="highlight-banner">
           <div>
-            <div class="eyebrow" style="color:var(--yellow)">Featured Event</div>
-            <h2 id="ev-main-h" style="font-size:clamp(1.6rem,4vw,3rem);color:var(--white);margin-bottom:.75rem">Science Spectacular: Summer Gala</h2>
-            <p style="color:rgba(255,255,255,.75);margin-bottom:1.5rem">Our biggest event! A full day of explosions, experiments, and entertainment. Live shows every hour, food stalls, and our science robot mascot Sparky!</p>
-            <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
-              <a href="coming-soon.html" class="btn btn-yellow">Book Tickets</a>
-              <span style="color:rgba(255,255,255,.6);font-size:var(--size-sm)">📅 2 August 2025 · 10:00–17:00</span>
+            <p class="section-label" style="color:var(--clr-secondary)">Featured Event</p>
+            <h2 id="featured-event">Science Spectacular: Summer Gala</h2>
+            <p>Our biggest event of the year! A full day of explosions, experiments, and entertainment for the whole family. Live shows every hour, food stalls, and a special appearance from our science robot mascot, Sparky!</p>
+            <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap;align-items:center">
+              <a href="coming-soon.html" class="btn btn--primary">Book Tickets Now</a>
+              <span style="color:rgba(255,255,255,0.7);font-size:var(--fs-sm)">📅 2 August 2025 &nbsp;·&nbsp; 10:00–17:00</span>
             </div>
           </div>
-          <div style="font-size:5rem" aria-hidden="true">🎆</div>
+          <div class="highlight-icon" aria-hidden="true">🎆</div>
         </div>
 
-        <h2 class="heading-lg" style="margin-bottom:2rem" id="jul-h">July 2025</h2>
-        <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem">
-          <div class="event-row"><div class="event-date-box" aria-label="5 July"><div class="event-mo">Jul</div><div class="event-dy">5</div></div><div><div class="event-title">Slime Science Workshop</div><div class="event-sub">🕙 10:00–11:30 · Lab A · Ages 6–12 · £8</div></div><span class="event-chip">Workshop</span><a href="coming-soon.html" class="btn btn-orange btn-sm">Book</a></div>
-          <div class="event-row"><div class="event-date-box" aria-label="12 July"><div class="event-mo">Jul</div><div class="event-dy">12</div></div><div><div class="event-title">Rocket Science Workshop</div><div class="event-sub">🕙 10:00–12:00 · Lab A · Ages 8–14 · £10</div></div><span class="event-chip">Workshop</span><a href="coming-soon.html" class="btn btn-orange btn-sm">Book</a></div>
-          <div class="event-row"><div class="event-date-box" aria-label="14 July"><div class="event-mo">Jul</div><div class="event-dy">14</div></div><div><div class="event-title">Family Science Sunday: Forces &amp; Flight</div><div class="event-sub">🕙 11:00–15:00 · Main Hall · All ages · Free with entry</div></div><span class="event-chip" style="background:var(--paper-cool);color:var(--teal)">Free</span><a href="coming-soon.html" class="btn btn-secondary btn-sm">Info</a></div>
-          <div class="event-row"><div class="event-date-box" aria-label="19 July"><div class="event-mo">Jul</div><div class="event-dy">19</div></div><div><div class="event-title">Night at the Planetarium: Summer Skies</div><div class="event-sub">🕖 18:30–20:00 · Dome Theatre · All ages · £12</div></div><span class="event-chip">Special Evening</span><a href="coming-soon.html" class="btn btn-orange btn-sm">Book</a></div>
-          <div class="event-row"><div class="event-date-box" aria-label="26 July"><div class="event-mo">Jul</div><div class="event-dy">26</div></div><div><div class="event-title">Junior Robotics Challenge</div><div class="event-sub">🕙 10:00–16:00 · Robotics Arena · Ages 9–15 · £15</div></div><span class="event-chip" style="background:#ffe4d0;color:#c45610">Competition</span><a href="coming-soon.html" class="btn btn-orange btn-sm">Book</a></div>
+        <!-- Filters -->
+        <div class="event-filters" role="navigation" aria-label="Filter events by type">
+          <button class="filter-btn active" aria-pressed="true">All Events</button>
+          <button class="filter-btn" aria-pressed="false">Workshops</button>
+          <button class="filter-btn" aria-pressed="false">Planetarium</button>
+          <button class="filter-btn" aria-pressed="false">Competitions</button>
+          <button class="filter-btn" aria-pressed="false">School Holidays</button>
+          <button class="filter-btn" aria-pressed="false">Free Events</button>
+        </div>
+        <p style="font-size:var(--fs-sm);color:var(--clr-mid);margin-bottom:var(--space-lg)">
+          Note: Online booking opens the featured filter view when JavaScript is enabled. For now, browsing the full calendar is available below. <a href="coming-soon.html">Online booking →</a>
+        </p>
+
+        <!-- July -->
+        <div class="month-group">
+          <h2 class="month-heading">July 2025</h2>
+          <div class="event-list">
+
+            <div class="event-item">
+              <div class="event-date" aria-label="5 July">
+                <div class="event-month">Jul</div>
+                <div class="event-day">5</div>
+              </div>
+              <div>
+                <div class="event-title">Slime Science Workshop</div>
+                <div class="event-meta">🕙 10:00–11:30 &nbsp;·&nbsp; 📍 Lab A &nbsp;·&nbsp; Ages 6–12 &nbsp;·&nbsp; £8 per child</div>
+              </div>
+              <span class="event-tag">Workshop</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="5 July">
+                <div class="event-month">Jul</div>
+                <div class="event-day">5</div>
+              </div>
+              <div>
+                <div class="event-title">Planetarium Show: Summer Constellations</div>
+                <div class="event-meta">🕑 14:00 & 16:00 &nbsp;·&nbsp; 📍 Dome Theatre &nbsp;·&nbsp; All ages &nbsp;·&nbsp; Included with entry</div>
+              </div>
+              <span class="event-tag" style="background:#e8e0ff;color:var(--clr-accent3)">Planetarium</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="12 July">
+                <div class="event-month">Jul</div>
+                <div class="event-day">12</div>
+              </div>
+              <div>
+                <div class="event-title">Rocket Science Workshop</div>
+                <div class="event-meta">🕙 10:00–12:00 &nbsp;·&nbsp; 📍 Lab A &nbsp;·&nbsp; Ages 8–14 &nbsp;·&nbsp; £10 per child</div>
+              </div>
+              <span class="event-tag">Workshop</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="14 July">
+                <div class="event-month">Jul</div>
+                <div class="event-day">14</div>
+              </div>
+              <div>
+                <div class="event-title">Family Science Sunday: Forces & Flights</div>
+                <div class="event-meta">🕙 11:00–15:00 &nbsp;·&nbsp; 📍 Main Hall &nbsp;·&nbsp; All ages &nbsp;·&nbsp; Free with entry</div>
+              </div>
+              <span class="event-tag" style="background:#ddfce8;color:#1a8a44">Free</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Info</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="19 July">
+                <div class="event-month">Jul</div>
+                <div class="event-day">19</div>
+              </div>
+              <div>
+                <div class="event-title">Night at the Planetarium: Summer Skies</div>
+                <div class="event-meta">🕖 18:30–20:00 &nbsp;·&nbsp; 📍 Dome Theatre &nbsp;·&nbsp; All ages &nbsp;·&nbsp; £12 / £8 child</div>
+              </div>
+              <span class="event-tag" style="background:#e8e0ff;color:var(--clr-accent3)">Special Evening</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="21 July">
+                <div class="event-month">Jul</div>
+                <div class="event-day">21</div>
+              </div>
+              <div>
+                <div class="event-title">Dinosaur Dig Day</div>
+                <div class="event-meta">🕙 10:00–16:00 &nbsp;·&nbsp; 📍 Fossil Pit &nbsp;·&nbsp; Ages 5–12 &nbsp;·&nbsp; Free with entry</div>
+              </div>
+              <span class="event-tag" style="background:#ddfce8;color:#1a8a44">Free</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Info</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="26 July">
+                <div class="event-month">Jul</div>
+                <div class="event-day">26</div>
+              </div>
+              <div>
+                <div class="event-title">Junior Robotics Challenge</div>
+                <div class="event-meta">🕙 10:00–16:00 &nbsp;·&nbsp; 📍 Robotics Arena &nbsp;·&nbsp; Ages 9–15 &nbsp;·&nbsp; £15 per child</div>
+              </div>
+              <span class="event-tag" style="background:#ffe5e2;color:var(--clr-accent1)">Competition</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+          </div>
         </div>
 
-        <h2 class="heading-lg" style="margin-bottom:2rem" id="aug-h">August 2025</h2>
-        <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem">
-          <div class="event-row"><div class="event-date-box" aria-label="2 August"><div class="event-mo">Aug</div><div class="event-dy">2</div></div><div><div class="event-title">Science Spectacular: Summer Gala</div><div class="event-sub">🕙 10:00–17:00 · Whole Museum · All ages</div></div><span class="event-chip" style="background:var(--yellow);color:var(--ink)">★ Gala</span><a href="coming-soon.html" class="btn btn-orange btn-sm">Book</a></div>
-          <div class="event-row"><div class="event-date-box" aria-label="9 August"><div class="event-mo">Aug</div><div class="event-dy">9</div></div><div><div class="event-title">Coding for Kids: Build a Game</div><div class="event-sub">🕙 10:00–12:30 · Computer Lab · Ages 10–15 · £12</div></div><span class="event-chip">Workshop</span><a href="coming-soon.html" class="btn btn-orange btn-sm">Book</a></div>
-          <div class="event-row"><div class="event-date-box" aria-label="16 August"><div class="event-mo">Aug</div><div class="event-dy">16</div></div><div><div class="event-title">Meteor Shower Watch Night</div><div class="event-sub">🕗 19:00–22:00 · Roof Garden · Ages 7+ · £10</div></div><span class="event-chip">Special Evening</span><a href="coming-soon.html" class="btn btn-orange btn-sm">Book</a></div>
+        <!-- August -->
+        <div class="month-group">
+          <h2 class="month-heading">August 2025</h2>
+          <div class="event-list">
+
+            <div class="event-item">
+              <div class="event-date" aria-label="2 August">
+                <div class="event-month">Aug</div>
+                <div class="event-day">2</div>
+              </div>
+              <div>
+                <div class="event-title">Science Spectacular: Summer Gala</div>
+                <div class="event-meta">🕙 10:00–17:00 &nbsp;·&nbsp; 📍 Whole Museum &nbsp;·&nbsp; All ages</div>
+              </div>
+              <span class="event-tag" style="background:linear-gradient(135deg,var(--clr-secondary),var(--clr-accent1));color:var(--clr-white)">★ Gala</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="9 August">
+                <div class="event-month">Aug</div>
+                <div class="event-day">9</div>
+              </div>
+              <div>
+                <div class="event-title">Coding for Kids: Build a Game</div>
+                <div class="event-meta">🕙 10:00–12:30 &nbsp;·&nbsp; 📍 Computer Lab &nbsp;·&nbsp; Ages 10–15 &nbsp;·&nbsp; £12</div>
+              </div>
+              <span class="event-tag">Workshop</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+            <div class="event-item">
+              <div class="event-date" aria-label="16 August">
+                <div class="event-month">Aug</div>
+                <div class="event-day">16</div>
+              </div>
+              <div>
+                <div class="event-title">Meteor Shower Watch Night</div>
+                <div class="event-meta">🕗 19:00–22:00 &nbsp;·&nbsp; 📍 Roof Garden &nbsp;·&nbsp; Ages 7+ &nbsp;·&nbsp; £10 per person</div>
+              </div>
+              <span class="event-tag" style="background:#e8e0ff;color:var(--clr-accent3)">Special Evening</span>
+              <a href="coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
+            </div>
+
+          </div>
         </div>
 
-        <div style="background:var(--navy);border-radius:var(--r3);padding:2.5rem;text-align:center;color:var(--white)">
-          <h2 style="color:var(--yellow);margin-bottom:.5em">Host Your Own Event</h2>
-          <p style="color:rgba(255,255,255,.7);max-width:44ch;margin-inline:auto;margin-bottom:1.5rem">Birthday parties, school trips, corporate events — private hire packages for all group sizes.</p>
-          <a href="contact.html" class="btn btn-yellow">Enquire about private hire</a>
+        <!-- Book a private event -->
+        <div style="background:var(--clr-primary);border-radius:var(--radius-lg);padding:var(--space-xl);text-align:center;color:var(--clr-white)">
+          <h2 style="color:var(--clr-secondary);margin-bottom:0.5em">Host Your Own Event</h2>
+          <p style="opacity:0.85;max-width:50ch;margin-inline:auto;margin-bottom:var(--space-md)">
+            Birthday parties, school trips, corporate team-building — we offer private hire packages for groups of all sizes.
+          </p>
+          <a href="contact.html" class="btn btn--primary">Enquire about private hire</a>
         </div>
+
       </div>
     </section>
+
   </main>
+
   <footer class="site-footer" aria-label="Site footer">
-    <div class="wrap">
+    <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand"><div style="font-family:var(--ff-display);font-weight:700;color:var(--white);margin-bottom:1rem">Community Science Museum</div><p>Inspiring the next generation of scientists since 1987.</p></div>
-        <div class="footer-col"><h3>Explore</h3><a href="exhibitions.html">Exhibitions</a><a href="events.html">Events</a><a href="visit.html">Plan a Visit</a><a href="get-involved.html">Get Involved</a></div>
-        <div class="footer-col"><h3>Visit Info</h3><a href="visit.html#hours">Opening Hours</a><a href="visit.html#tickets">Ticket Prices</a><a href="visit.html#access">Accessibility</a><a href="visit.html#getting-here">Getting Here</a></div>
-        <div class="footer-col"><h3>Connect</h3><a href="contact.html">Contact Us</a><a href="get-involved.html#volunteer">Volunteer</a><a href="get-involved.html#donate">Donate</a><a href="coming-soon.html">Press Room</a></div>
+        <div class="footer-brand">
+          <div class="logo-text" style="margin-bottom:var(--space-sm)">Curiosa</div>
+          <p>Inspiring the next generation of scientists, explorers, and innovators since 1987.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="exhibitions.html">Exhibitions</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="visit.html">Plan a Visit</a></li>
+            <li><a href="get-involved.html">Get Involved</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Visit Info</h3>
+          <ul>
+            <li><a href="visit.html#hours">Opening Hours</a></li>
+            <li><a href="visit.html#tickets">Ticket Prices</a></li>
+            <li><a href="visit.html#access">Accessibility</a></li>
+            <li><a href="visit.html#getting-here">Getting Here</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+            <li><a href="get-involved.html#donate">Donate</a></li>
+            <li><a href="coming-soon.html">Press Room</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-bottom"><p>© 2025 Community Science Museum.</p><p><a href="coming-soon.html" style="color:inherit">Privacy</a> · <a href="coming-soon.html" style="color:inherit">Accessibility</a></p></div>
+      <div class="footer-bottom">
+        <p>© 2025 Curiosa Science Museum. All rights reserved.</p>
+        <p><a href="coming-soon.html" style="color:inherit">Privacy Policy</a> · <a href="coming-soon.html" style="color:inherit">Accessibility Statement</a></p>
+      </div>
     </div>
   </footer>
+
 </body>
 </html>

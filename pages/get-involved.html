@@ -3,157 +3,353 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Get Involved — Community Science Museum</title>
-  <meta name="description" content="Membership, volunteering, donations, and school visits." />
+  <title>Get Involved — Curiosa Science Museum</title>
+  <meta name="description" content="Join the Curiosa Science Museum community. Become a member, volunteer, donate, or book a school trip. Help us inspire the next generation of scientists." />
+  <link rel="icon" type="image/svg+xml" href="../images/curiosa-icon.svg" />
   <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .membership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .membership-card {
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sm);
+      border-top: 5px solid var(--clr-accent2);
+      display: flex;
+      flex-direction: column;
+    }
+    .membership-card.popular {
+      border-top-color: var(--clr-secondary);
+      background: var(--clr-primary);
+      color: var(--clr-white);
+    }
+    .membership-card.popular h3 { color: var(--clr-secondary); }
+    .membership-card.popular li,
+    .membership-card.popular .mem-price-sub { color: rgba(255,255,255,0.75); }
+    .mem-price {
+      font-family: var(--ff-display);
+      font-size: var(--fs-4xl);
+      font-weight: 700;
+      color: var(--clr-primary);
+      line-height: 1;
+      margin-block: var(--space-xs);
+    }
+    .membership-card.popular .mem-price { color: var(--clr-secondary); }
+    .mem-price-sub { font-size: var(--fs-sm); color: var(--clr-mid); }
+    .mem-features { list-style: none; margin-block: var(--space-sm); flex: 1; }
+    .mem-features li {
+      padding: 0.35em 0;
+      font-size: var(--fs-sm);
+      display: flex;
+      gap: 0.5em;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .membership-card.popular .mem-features li { border-bottom-color: rgba(255,255,255,0.1); }
+    .mem-features li::before { content: '✓'; color: var(--clr-accent2); font-weight: 700; flex-shrink: 0; }
+    .volunteer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+    .volunteer-role {
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      gap: var(--space-sm);
+    }
+    .volunteer-role-icon { font-size: 2rem; flex-shrink: 0; }
+    .donate-amounts {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+    .donate-btn {
+      font-family: var(--ff-display);
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      background: var(--clr-light-alt);
+      color: var(--clr-primary);
+      border: 2px solid var(--clr-primary);
+      border-radius: var(--radius-xl);
+      padding: 0.5em 1.5em;
+      cursor: pointer;
+      transition: background-color var(--transition), color var(--transition);
+      display: inline-block;
+    }
+    .donate-btn:hover { background: var(--clr-primary); color: var(--clr-white); }
+    @media(max-width:900px) {
+      .membership-grid { grid-template-columns: 1fr; }
+      .volunteer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to main content</a>
-  <div class="ann-bar">🎉 Free entry for under-12s all of July! &nbsp;<a href="visit.html">Plan your visit →</a></div>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="info-strip">
+    🎉 Free entry for under-12s all of July! &nbsp;<a href="visit.html">Plan your visit →</a>
+  </div>
+
   <header class="site-header">
-    <input type="checkbox" id="menu-toggle" hidden />
-    <div class="wrap nav-inner">
-      <a href="../index.html" class="logo" aria-label="Community Science Museum — home">
-        <div class="logo-mark" aria-hidden="true">🔭</div>
-        <div>Community<br><span>Science Museum</span></div>
+    <input type="checkbox" id="nav-checkbox" aria-hidden="true" />
+    <div class="container nav-wrapper">
+      <a href="../index.html" class="site-logo" aria-label="Curiosa Science Museum — Home">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="../images/curiosa-icon.svg" alt="" width="44" height="44" />
+        </div>
+        <div class="logo-text">Curiosa<span>Science Museum</span></div>
       </a>
       <nav aria-label="Main navigation">
-        <ul class="nav-list">
+        <ul class="nav-links">
           <li><a href="../index.html">Home</a></li>
           <li><a href="exhibitions.html">Exhibitions</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="visit.html">Visit</a></li>
-          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="visit.html">Visit Us</a></li>
+          <li><a href="get-involved.html" class="active" aria-current="page">Get Involved</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <a href="visit.html" class="nav-cta">Plan Your Visit</a>
-      <label class="hamburger-label" for="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+      <label class="nav-toggle" for="nav-checkbox" aria-label="Toggle menu">
+        <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
+      </label>
     </div>
   </header>
-  <main id="main">
 
-    <section class="page-hero" aria-labelledby="page-h">
-      <div class="wrap">
-        <h1 id="page-h">Get Involved</h1>
-        <p>Join our community — as a member, volunteer, donor, or educator. Together we inspire the next generation.</p>
-      </div>
-    </section>
-    <div class="wrap"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Get Involved</span></nav></div>
+  <main id="main-content">
 
-    <section class="section" id="membership" aria-labelledby="mem-h">
-      <div class="wrap">
-        <div class="center" style="margin-bottom:3rem">
-          <div class="eyebrow">Unlimited science</div>
-          <h2 class="heading-xl" id="mem-h">Membership Plans</h2>
-          <p class="lead">Come back again and again. Membership pays for itself in two visits.</p>
-        </div>
-        <div class="grid-3">
-          <div class="ticket" style="text-align:left">
-            <div class="tick-type">Individual</div>
-            <div class="tick-price"><sup>£</sup>55</div>
-            <div class="tick-name">Science Explorer</div>
-            <ul style="color:var(--ink-light);font-size:var(--size-sm);display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem;flex:1">
-              <li>✓ Unlimited entry for 1 adult</li>
-              <li>✓ 10% café discount</li>
-              <li>✓ Monthly e-newsletter</li>
-              <li>✓ Early event booking</li>
-            </ul>
-            <a href="coming-soon.html" class="btn btn-secondary btn-wide">Join Now</a>
-          </div>
-          <div class="ticket feat" style="text-align:left">
-            <div class="tick-type">Most Popular ⭐</div>
-            <div class="tick-price"><sup>£</sup>110</div>
-            <div class="tick-name">Young Stars Family</div>
-            <ul style="color:rgba(255,255,255,.7);font-size:var(--size-sm);display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem;flex:1">
-              <li>✓ 2 adults + up to 4 children</li>
-              <li>✓ Science passport for each child</li>
-              <li>✓ Monthly activity pack by post</li>
-              <li>✓ Priority workshop booking</li>
-              <li>✓ 15% café &amp; shop discount</li>
-              <li>✓ Free planetarium shows</li>
-            </ul>
-            <a href="coming-soon.html" class="btn btn-yellow btn-wide">Join Young Stars</a>
-          </div>
-          <div class="ticket" style="text-align:left">
-            <div class="tick-type">Premium</div>
-            <div class="tick-price"><sup>£</sup>175</div>
-            <div class="tick-name">Patron</div>
-            <ul style="color:var(--ink-light);font-size:var(--size-sm);display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem;flex:1">
-              <li>✓ Everything in Young Stars</li>
-              <li>✓ Curator evening invitations</li>
-              <li>✓ Behind-the-scenes tours</li>
-              <li>✓ Name in annual report</li>
-              <li>✓ 20% discount on events</li>
-            </ul>
-            <a href="coming-soon.html" class="btn btn-secondary btn-wide">Become a Patron</a>
-          </div>
-        </div>
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="container">
+        <h1 id="page-heading">Get Involved</h1>
+        <p>Join our community of science enthusiasts — as a member, volunteer, donor, or educator. Together, we can inspire the next generation.</p>
       </div>
     </section>
 
-    <section class="section section--warm" id="schools" aria-labelledby="sch-h">
-      <div class="wrap">
-        <div class="split">
-          <div class="feature-img noise" style="background:linear-gradient(135deg,#0d2b4b,#0ea5a0)"><span aria-hidden="true" style="font-size:6rem">📚</span></div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Get Involved</span>
+      </nav>
+    </div>
+
+    <!-- Membership -->
+    <section class="section" id="membership" aria-labelledby="membership-heading">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:var(--space-lg)">
+          <p class="section-label">Unlimited science</p>
+          <h2 class="section-title" id="membership-heading">Membership Plans</h2>
+          <p class="section-subtitle">Come back again and again. Museum membership pays for itself in just two visits.</p>
+        </div>
+        <div class="membership-grid">
+
+          <div class="membership-card">
+            <div style="font-family:var(--ff-display);font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--clr-mid)">Individual</div>
+            <div class="mem-price">£55</div>
+            <div class="mem-price-sub">per year</div>
+            <h3 style="margin-top:var(--space-xs)">Science Explorer</h3>
+            <ul class="mem-features">
+              <li>Unlimited entry for 1 adult</li>
+              <li>10% café discount</li>
+              <li>Monthly e-newsletter</li>
+              <li>Early booking for events</li>
+            </ul>
+            <a href="coming-soon.html" class="btn btn--secondary" style="width:100%;justify-content:center;margin-top:auto">Join Now</a>
+          </div>
+
+          <div class="membership-card popular">
+            <div style="font-family:var(--ff-display);font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--clr-secondary)">Most Popular ⭐</div>
+            <div class="mem-price">£110</div>
+            <div class="mem-price-sub">per year</div>
+            <h3 style="margin-top:var(--space-xs)">Young Stars Family</h3>
+            <ul class="mem-features">
+              <li>Unlimited entry: 2 adults + up to 4 children</li>
+              <li>Science passport for each child</li>
+              <li>Monthly activity pack by post</li>
+              <li>Priority workshop booking</li>
+              <li>15% café & shop discount</li>
+              <li>Free planetarium shows</li>
+            </ul>
+            <a href="coming-soon.html" class="btn btn--primary" style="width:100%;justify-content:center;margin-top:auto">Join Young Stars</a>
+          </div>
+
+          <div class="membership-card">
+            <div style="font-family:var(--ff-display);font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--clr-mid)">Premium</div>
+            <div class="mem-price">£175</div>
+            <div class="mem-price-sub">per year</div>
+            <h3 style="margin-top:var(--space-xs)">Patron</h3>
+            <ul class="mem-features">
+              <li>Everything in Young Stars</li>
+              <li>Invitation to exclusive curator evenings</li>
+              <li>Behind-the-scenes tours (twice yearly)</li>
+              <li>Name in annual report</li>
+              <li>20% discount on all events</li>
+            </ul>
+            <a href="coming-soon.html" class="btn btn--secondary" style="width:100%;justify-content:center;margin-top:auto">Become a Patron</a>
+          </div>
+
+        </div>
+        <p style="text-align:center;font-size:var(--fs-sm);color:var(--clr-mid)">
+          Concession memberships available for students and over-60s. <a href="contact.html" style="color:var(--clr-accent2)">Contact us</a> to find out more.
+        </p>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section class="section section--alt" id="schools" aria-labelledby="schools-heading">
+      <div class="container">
+        <div class="feature-split">
+          <div class="feature-img" style="background:linear-gradient(135deg,#d0e8f2,#1a3a5c)" aria-hidden="true">
+            <span style="font-size:5rem">📚</span>
+          </div>
           <div>
-            <div class="eyebrow">For Educators</div>
-            <h2 class="heading-lg" id="sch-h">School Group Visits</h2>
-            <p style="color:var(--ink-light);margin-bottom:1.5rem">Curriculum-linked STEM experiences for KS1–KS4. From £8 per pupil. Free entry for accompanying staff. Teacher resource packs included.</p>
-            <a href="contact.html" class="btn btn-primary">Book a School Visit</a>
+            <p class="section-label">For Educators</p>
+            <h2 class="section-title" id="schools-heading">School Group Visits</h2>
+            <p style="color:var(--clr-mid);margin-bottom:var(--space-md)">
+              We work with primary and secondary schools to create curriculum-linked experiences
+              that bring STEM subjects to life. Our education team will help you plan a visit
+              tailored to your group's age and learning objectives.
+            </p>
+            <ul class="mem-features" style="margin-bottom:var(--space-md)">
+              <li>Curriculum-linked workshop programmes (KS1–KS4)</li>
+              <li>Dedicated group entry from just £8 per pupil</li>
+              <li>Free entry for up to 1 adult per 5 pupils</li>
+              <li>Teacher resource packs for pre-visit preparation</li>
+              <li>STEM ambassador Q&amp;A sessions on request</li>
+            </ul>
+            <a href="contact.html" class="btn btn--primary">Book a School Visit</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="volunteer" aria-labelledby="vol-h">
-      <div class="wrap">
-        <div class="center" style="margin-bottom:3rem">
-          <div class="eyebrow">Give back</div>
-          <h2 class="heading-xl" id="vol-h">Volunteer With Us</h2>
-          <p class="lead">Share your passion for science and make a real difference to visitors of all ages.</p>
+    <!-- Volunteer -->
+    <section class="section" id="volunteer" aria-labelledby="volunteer-heading">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:var(--space-lg)">
+          <p class="section-label">Give back</p>
+          <h2 class="section-title" id="volunteer-heading">Volunteer With Us</h2>
+          <p class="section-subtitle">Share your passion for science and make a real difference to visitors of all ages.</p>
         </div>
-        <div class="grid-2" style="margin-bottom:2.5rem">
-          <div class="card"><div class="card-body" style="display:flex;gap:1rem"><span style="font-size:2rem;flex-shrink:0">🎤</span><div><h3 style="font-size:var(--size-lg);margin-bottom:.4rem">Science Demonstrator</h3><p style="color:var(--ink-light);font-size:var(--size-sm)">Lead live demonstrations. No science degree required — just enthusiasm!</p></div></div></div>
-          <div class="card"><div class="card-body" style="display:flex;gap:1rem"><span style="font-size:2rem;flex-shrink:0">🗺️</span><div><h3 style="font-size:var(--size-lg);margin-bottom:.4rem">Visitor Guide</h3><p style="color:var(--ink-light);font-size:var(--size-sm)">Welcome visitors, answer questions, help families explore. Great if you love connecting with people.</p></div></div></div>
-          <div class="card"><div class="card-body" style="display:flex;gap:1rem"><span style="font-size:2rem;flex-shrink:0">🖥️</span><div><h3 style="font-size:var(--size-lg);margin-bottom:.4rem">Digital Support</h3><p style="color:var(--ink-light);font-size:var(--size-sm)">Help visitors use coding stations and robotics equipment. Great for those with tech skills.</p></div></div></div>
-          <div class="card"><div class="card-body" style="display:flex;gap:1rem"><span style="font-size:2rem;flex-shrink:0">📸</span><div><h3 style="font-size:var(--size-lg);margin-bottom:.4rem">Events Team</h3><p style="color:var(--ink-light);font-size:var(--size-sm)">Support workshops, special evenings, and holiday programmes.</p></div></div></div>
-        </div>
-        <div style="text-align:center"><a href="contact.html" class="btn btn-primary">Apply to Volunteer</a></div>
-      </div>
-    </section>
-
-    <section class="section section--dark" id="donate" aria-labelledby="don-h">
-      <div class="wrap">
-        <div class="split rev">
-          <div class="feature-img" style="background:linear-gradient(135deg,#0d2b4b,#0ea5a0)"><span aria-hidden="true" style="font-size:6rem">💛</span></div>
-          <div>
-            <div class="eyebrow" style="color:var(--yellow)">Make a difference</div>
-            <h2 class="heading-lg" id="don-h">Support Our Mission</h2>
-            <p style="color:rgba(255,255,255,.75);margin-bottom:1.5rem">We are a registered charity. Your donation funds free school visits, accessible programmes, and new exhibitions for future generations.</p>
-            <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem">
-              <a href="coming-soon.html" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-family:var(--ff-display);font-weight:700;font-size:var(--size-lg);padding:.5em 1.4em;border-radius:var(--r4)">£5</a>
-              <a href="coming-soon.html" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-family:var(--ff-display);font-weight:700;font-size:var(--size-lg);padding:.5em 1.4em;border-radius:var(--r4)">£10</a>
-              <a href="coming-soon.html" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-family:var(--ff-display);font-weight:700;font-size:var(--size-lg);padding:.5em 1.4em;border-radius:var(--r4)">£25</a>
-              <a href="coming-soon.html" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-family:var(--ff-display);font-weight:700;font-size:var(--size-lg);padding:.5em 1.4em;border-radius:var(--r4)">£50</a>
-              <a href="coming-soon.html" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-family:var(--ff-display);font-weight:700;font-size:var(--size-lg);padding:.5em 1.4em;border-radius:var(--r4)">Other</a>
+        <div class="volunteer-grid">
+          <div class="volunteer-role">
+            <div class="volunteer-role-icon" aria-hidden="true">🎤</div>
+            <div>
+              <h3 style="font-size:var(--fs-lg);margin-bottom:0.3em">Science Demonstrator</h3>
+              <p style="font-size:var(--fs-sm);color:var(--clr-mid)">Lead exciting live demonstrations and help visitors engage with hands-on experiments. No science degree required — just enthusiasm!</p>
             </div>
-            <a href="coming-soon.html" class="btn btn-yellow">Donate Now 💛</a>
+          </div>
+          <div class="volunteer-role">
+            <div class="volunteer-role-icon" aria-hidden="true">🗺️</div>
+            <div>
+              <h3 style="font-size:var(--fs-lg);margin-bottom:0.3em">Visitor Guide</h3>
+              <p style="font-size:var(--fs-sm);color:var(--clr-mid)">Welcome visitors, answer questions, and help families navigate the museum. Perfect for people who love talking and connecting with others.</p>
+            </div>
+          </div>
+          <div class="volunteer-role">
+            <div class="volunteer-role-icon" aria-hidden="true">🖥️</div>
+            <div>
+              <h3 style="font-size:var(--fs-lg);margin-bottom:0.3em">Digital Support Volunteer</h3>
+              <p style="font-size:var(--fs-sm);color:var(--clr-mid)">Help visitors use our interactive digital exhibits, coding stations, and robotics equipment. Great for those with tech skills.</p>
+            </div>
+          </div>
+          <div class="volunteer-role">
+            <div class="volunteer-role-icon" aria-hidden="true">📸</div>
+            <div>
+              <h3 style="font-size:var(--fs-lg);margin-bottom:0.3em">Events Team</h3>
+              <p style="font-size:var(--fs-sm);color:var(--clr-mid)">Support our workshops, special evenings, and holiday programmes. Help set up, run activities, and make events unforgettable.</p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:var(--space-lg)">
+          <a href="contact.html" class="btn btn--primary">Apply to Volunteer</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donate -->
+    <section class="section section--dark" id="donate" aria-labelledby="donate-heading">
+      <div class="container">
+        <div class="feature-split">
+          <div>
+            <p class="section-label">Make a difference</p>
+            <h2 class="section-title" id="donate-heading">Support Our Mission</h2>
+            <p style="color:rgba(255,255,255,0.8);margin-bottom:var(--space-md)">
+              We are a registered charity. Your donation directly funds free school visits,
+              accessible programmes for families on low incomes, and the development of
+              new exhibitions for future generations.
+            </p>
+            <p style="color:rgba(255,255,255,0.8);margin-bottom:var(--space-md)">
+              Choose a monthly or one-off amount, or <a href="contact.html" style="color:var(--clr-secondary)">contact us</a> about
+              corporate partnerships and major gifts.
+            </p>
+            <div class="donate-amounts" role="group" aria-label="Select donation amount">
+              <a href="coming-soon.html" class="donate-btn">£5</a>
+              <a href="coming-soon.html" class="donate-btn">£10</a>
+              <a href="coming-soon.html" class="donate-btn">£25</a>
+              <a href="coming-soon.html" class="donate-btn">£50</a>
+              <a href="coming-soon.html" class="donate-btn">Other</a>
+            </div>
+            <a href="coming-soon.html" class="btn btn--primary">Donate Now 💛</a>
+          </div>
+          <div class="feature-img" style="background:linear-gradient(135deg,#1e4a7a,#2db89e)" aria-hidden="true">
+            <span style="font-size:5rem">💛</span>
           </div>
         </div>
       </div>
     </section>
+
   </main>
+
   <footer class="site-footer" aria-label="Site footer">
-    <div class="wrap">
+    <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand"><div style="font-family:var(--ff-display);font-weight:700;color:var(--white);margin-bottom:1rem">Community Science Museum</div><p>Inspiring the next generation of scientists since 1987.</p></div>
-        <div class="footer-col"><h3>Explore</h3><a href="exhibitions.html">Exhibitions</a><a href="events.html">Events</a><a href="visit.html">Plan a Visit</a><a href="get-involved.html">Get Involved</a></div>
-        <div class="footer-col"><h3>Visit Info</h3><a href="visit.html#hours">Opening Hours</a><a href="visit.html#tickets">Ticket Prices</a><a href="visit.html#access">Accessibility</a><a href="visit.html#getting-here">Getting Here</a></div>
-        <div class="footer-col"><h3>Connect</h3><a href="contact.html">Contact Us</a><a href="get-involved.html#volunteer">Volunteer</a><a href="get-involved.html#donate">Donate</a><a href="coming-soon.html">Press Room</a></div>
+        <div class="footer-brand">
+          <div class="logo-text" style="margin-bottom:var(--space-sm)">Curiosa</div>
+          <p>Inspiring the next generation of scientists, explorers, and innovators since 1987.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="exhibitions.html">Exhibitions</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="visit.html">Plan a Visit</a></li>
+            <li><a href="get-involved.html">Get Involved</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Visit Info</h3>
+          <ul>
+            <li><a href="visit.html#hours">Opening Hours</a></li>
+            <li><a href="visit.html#tickets">Ticket Prices</a></li>
+            <li><a href="visit.html#access">Accessibility</a></li>
+            <li><a href="visit.html#getting-here">Getting Here</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+            <li><a href="get-involved.html#donate">Donate</a></li>
+            <li><a href="coming-soon.html">Press Room</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-bottom"><p>© 2025 Community Science Museum.</p><p><a href="coming-soon.html" style="color:inherit">Privacy</a> · <a href="coming-soon.html" style="color:inherit">Accessibility</a></p></div>
+      <div class="footer-bottom">
+        <p>© 2025 Curiosa Science Museum. All rights reserved.</p>
+        <p><a href="coming-soon.html" style="color:inherit">Privacy Policy</a> · <a href="coming-soon.html" style="color:inherit">Accessibility Statement</a></p>
+      </div>
     </div>
   </footer>
+
 </body>
 </html>

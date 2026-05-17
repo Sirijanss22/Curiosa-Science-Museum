@@ -3,140 +3,205 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exhibitions — Community Science Museum</title>
-  <meta name="description" content="Six world-class interactive exhibition zones — space, evolution, robotics, ecology, the human body, and physics. All designed to spark curiosity in visitors of all ages." />
+  <title>Exhibitions — Curiosa Science Museum</title>
+  <meta name="description" content="Discover our world-class science exhibitions covering space, evolution, robotics, ecology, the human body, and physics. Interactive, hands-on fun for all ages." />
+  <link rel="icon" type="image/svg+xml" href="../images/curiosa-icon.svg" />
   <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .card-img img, .feature-img img, .gallery-item img {
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .card-img { background:#1a3a5c; }
+    .feature-img { background:#0d2b4b; }
+    .gallery-item { background:#1a3a5c; }
+  </style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to main content</a>
-  <div class="ann-bar">🎉 Free entry for under-12s all of July! &nbsp;<a href="visit.html">Plan your visit →</a></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="info-strip">🎉 Free entry for under-12s all of July! &nbsp;<a href="visit.html">Plan your visit →</a></div>
   <header class="site-header">
-    <input type="checkbox" id="menu-toggle" hidden />
-    <div class="wrap nav-inner">
-      <a href="../index.html" class="logo" aria-label="Community Science Museum — home">
-        <div class="logo-mark" aria-hidden="true">🔭</div>
-        <div>Community<br><span>Science Museum</span></div>
+    <input type="checkbox" id="nav-checkbox" aria-hidden="true" />
+    <div class="container nav-wrapper">
+      <a href="../index.html" class="site-logo" aria-label="Curiosa Science Museum — Home">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="../images/curiosa-icon.svg" alt="" width="44" height="44" />
+        </div>
+        <div class="logo-text">Curiosa<span>Science Museum</span></div>
       </a>
       <nav aria-label="Main navigation">
-        <ul class="nav-list">
+        <ul class="nav-links">
           <li><a href="../index.html">Home</a></li>
           <li><a href="exhibitions.html" class="active" aria-current="page">Exhibitions</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="visit.html">Visit</a></li>
+          <li><a href="visit.html">Visit Us</a></li>
           <li><a href="get-involved.html">Get Involved</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <a href="visit.html" class="nav-cta">Plan Your Visit</a>
-      <label class="hamburger-label" for="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+      <label class="nav-toggle" for="nav-checkbox" aria-label="Toggle menu">
+        <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
+      </label>
     </div>
   </header>
+  <main id="main-content">
 
-  <main id="main">
-    <section class="page-hero" aria-labelledby="page-h">
-      <div class="wrap">
-        <h1 id="page-h">Our Exhibitions</h1>
-        <p>Six immersive, fully interactive zones where science comes alive. Designed for visitors of all ages.</p>
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="container">
+        <h1 id="page-heading">Our Exhibitions</h1>
+        <p>Six world-class, fully interactive exhibition zones where science comes alive. Designed to spark curiosity in visitors of all ages.</p>
       </div>
     </section>
-    <div class="wrap"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">›</span><span aria-current="page">Exhibitions</span></nav></div>
 
-    <!-- Featured Zones -->
-    <section class="section" aria-labelledby="zones-h">
-      <div class="wrap">
-        <div class="eyebrow">What's inside</div>
-        <h2 class="heading-xl" id="zones-h" style="margin-bottom:3rem">Explore All Zones</h2>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Exhibitions</span>
+      </nav>
+    </div>
+
+    <section class="section" aria-labelledby="all-exhibitions">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:var(--space-lg)">
+          <p class="section-label">What's inside</p>
+          <h2 class="section-title" id="all-exhibitions">Explore All Zones</h2>
+          <p class="section-subtitle">Each zone is packed with hands-on activities, interactive displays, and live demonstrations.</p>
+        </div>
 
         <!-- Cosmology -->
-        <article id="cosmology" style="margin-bottom:5rem">
-          <div class="split">
-            <div class="feature-img noise" style="background:linear-gradient(135deg,#0d2b4b,#0a4a7a)" aria-hidden="true"><span style="font-size:7rem">🚀</span></div>
+        <article id="cosmology" style="margin-bottom:var(--space-2xl)">
+          <div class="feature-split">
+            <div class="feature-img">
+              <img
+                src="../images/hero-galaxy.jpg"
+                alt="Deep blue galaxy and stars photographed in Portugal — representing our Cosmology exhibition"
+                loading="lazy" width="700" height="560"
+              />
+            </div>
             <div>
-              <span class="card-tag tag--violet" style="margin-bottom:.75rem;display:inline-block">Space · Level 2</span>
-              <h2 class="heading-lg">Cosmology: The Big Picture</h2>
-              <p style="color:var(--ink-light);margin-bottom:1.5rem">Journey from the Big Bang to the edge of the observable universe. A 1:10 billion scale model of the solar system, AR nebula viewers, and a genuine lunar meteorite you can actually touch.</p>
-              <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem">
-                <li style="display:flex;gap:.5em"><span style="color:var(--teal);font-weight:700">★</span> Touch a real lunar meteorite</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--teal);font-weight:700">★</span> AR telescope — live images from space</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--teal);font-weight:700">★</span> Scale model solar system walk</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--teal);font-weight:700">★</span> Daily planetarium shows</li>
+              <span class="card-tag card-tag--space">Space · Level 2</span>
+              <h2 style="font-size:var(--fs-3xl);margin-block:0.3em var(--space-sm)">Cosmology: The Big Picture</h2>
+              <p style="color:var(--clr-mid);margin-bottom:var(--space-sm)">
+                Journey from the Big Bang to the edge of the observable universe. Features a 1:10 billion scale model of the solar system, augmented reality nebula viewers, and a genuine lunar meteorite you can actually touch.
+              </p>
+              <ul style="display:flex;flex-direction:column;gap:0.4em;margin-bottom:var(--space-md)">
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent2)">★</span> Touch a real lunar meteorite</li>
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent2)">★</span> AR telescope — view live images from space</li>
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent2)">★</span> Scale model solar system walk</li>
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent2)">★</span> Daily planetarium shows</li>
               </ul>
-              <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
-                <a href="coming-soon.html" class="btn btn-primary">Book planetarium show</a>
-                <span style="color:var(--ink-light);font-size:var(--size-sm)">🕒 Allow 60–90 min</span>
+              <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap">
+                <a href="coming-soon.html" class="btn btn--primary">Book planetarium show</a>
+                <span style="align-self:center;color:var(--clr-mid);font-size:var(--fs-sm)">🕒 Allow 60–90 min</span>
               </div>
             </div>
           </div>
         </article>
 
         <!-- Evolution -->
-        <article id="evolution" style="margin-bottom:5rem">
-          <div class="split rev">
-            <div class="feature-img noise" style="background:linear-gradient(135deg,#064e3b,#16a34a)" aria-hidden="true"><span style="font-size:7rem">🦕</span></div>
+        <article id="evolution" style="margin-bottom:var(--space-2xl);background:var(--clr-light-alt);border-radius:var(--radius-lg);padding:var(--space-xl)">
+          <div class="feature-split reverse">
+            <div class="feature-img">
+              <img
+                src="../images/trex-museum.jpg"
+                alt="T-rex skeleton at the Field Museum in Chicago — on display in the Evolution exhibition"
+                loading="lazy" width="700" height="560"
+              />
+            </div>
             <div>
-              <span class="card-tag tag--green" style="margin-bottom:.75rem;display:inline-block">Biology · Level 1</span>
-              <h2 class="heading-lg">Evolution: Life Through Time</h2>
-              <p style="color:var(--ink-light);margin-bottom:1.5rem">Walk a timeline of 3.5 billion years. Life-size animatronic dinosaurs, fossil excavation, and real DNA extraction experiments.</p>
-              <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem">
-                <li style="display:flex;gap:.5em"><span style="color:var(--green);font-weight:700">★</span> Life-size animatronic T. rex</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--green);font-weight:700">★</span> Fossil excavation pit (all ages)</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--green);font-weight:700">★</span> DNA extraction lab</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--green);font-weight:700">★</span> Human family tree display</li>
+              <span class="card-tag card-tag--science">Biology · Level 1</span>
+              <h2 style="font-size:var(--fs-3xl);margin-block:0.3em var(--space-sm)">Evolution: Life Through Time</h2>
+              <p style="color:var(--clr-mid);margin-bottom:var(--space-sm)">
+                Walk a timeline stretching 3.5 billion years. Come face-to-face with animatronic dinosaurs, examine fossil casts, and discover how DNA connects all living things.
+              </p>
+              <ul style="display:flex;flex-direction:column;gap:0.4em;margin-bottom:var(--space-md)">
+                <li style="display:flex;gap:0.5em"><span style="color:#1a8a44">★</span> Life-size animatronic T. rex</li>
+                <li style="display:flex;gap:0.5em"><span style="color:#1a8a44">★</span> Fossil excavation pit (all ages)</li>
+                <li style="display:flex;gap:0.5em"><span style="color:#1a8a44">★</span> DNA extraction lab</li>
+                <li style="display:flex;gap:0.5em"><span style="color:#1a8a44">★</span> Human family tree interactive display</li>
               </ul>
-              <span style="color:var(--ink-light);font-size:var(--size-sm)">🕒 Allow 45–75 min</span>
+              <span style="color:var(--clr-mid);font-size:var(--fs-sm)">🕒 Allow 45–75 min</span>
             </div>
           </div>
         </article>
 
         <!-- Robotics -->
-        <article id="robotics" style="margin-bottom:5rem">
-          <div class="split">
-            <div class="feature-img noise" style="background:linear-gradient(135deg,#312e81,#5b3af7)" aria-hidden="true"><span style="font-size:7rem">🤖</span></div>
+        <article id="robotics" style="margin-bottom:var(--space-2xl)">
+          <div class="feature-split">
+            <div class="feature-img">
+              <img
+                src="../images/coloured-tubes.jpg"
+                alt="Colourful test tubes in a science lab — representing our hands-on Robotics and Science Lab"
+                loading="lazy" width="700" height="560"
+              />
+            </div>
             <div>
-              <span class="card-tag tag--violet" style="margin-bottom:.75rem;display:inline-block">Technology · Level 3</span>
-              <h2 class="heading-lg">Robotics & AI Lab</h2>
-              <p style="color:var(--ink-light);margin-bottom:1.5rem">Programme real robots with block coding, race them on our track, and explore how AI learns. Our most popular zone — book workshops in advance.</p>
-              <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem">
-                <li style="display:flex;gap:.5em"><span style="color:var(--violet);font-weight:700">★</span> 20+ programmable robots</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--violet);font-weight:700">★</span> Block-coding station for beginners</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--violet);font-weight:700">★</span> AI image recognition challenge</li>
-                <li style="display:flex;gap:.5em"><span style="color:var(--violet);font-weight:700">★</span> 3D printing demo every hour</li>
+              <span class="card-tag card-tag--tech">Technology · Level 3</span>
+              <h2 style="font-size:var(--fs-3xl);margin-block:0.3em var(--space-sm)">Robotics & AI Lab</h2>
+              <p style="color:var(--clr-mid);margin-bottom:var(--space-sm)">
+                Programme robots using block coding, race them on our track, and explore how artificial intelligence learns. Daily workshops every weekend and school holiday.
+              </p>
+              <ul style="display:flex;flex-direction:column;gap:0.4em;margin-bottom:var(--space-md)">
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent3)">★</span> 20+ programmable robots to control</li>
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent3)">★</span> Block-coding station for beginners</li>
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent3)">★</span> AI image recognition challenge</li>
+                <li style="display:flex;gap:0.5em"><span style="color:var(--clr-accent3)">★</span> 3D printing demonstration every hour</li>
               </ul>
-              <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
-                <a href="coming-soon.html" class="btn btn-primary">Book workshop</a>
-                <span style="color:var(--ink-light);font-size:var(--size-sm)">🕒 Allow 60–90 min</span>
+              <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap">
+                <a href="coming-soon.html" class="btn btn--primary">Book workshop</a>
+                <span style="align-self:center;color:var(--clr-mid);font-size:var(--fs-sm)">🕒 Allow 60–90 min</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- More zones -->
-        <h2 class="heading-lg" style="margin-bottom:2rem">More to Explore</h2>
+        <!-- More zones — cards with real images -->
+        <h2 class="section-title" style="margin-bottom:var(--space-md)">More to Explore</h2>
         <div class="grid-3">
           <article class="card" id="ecology">
-            <div class="card-media" style="background:linear-gradient(135deg,#dcfce7,#16a34a)"><span aria-hidden="true">🌿</span></div>
+            <div class="card-img">
+              <img
+                src="../images/science-lab.jpg"
+                alt="Scientists examining specimens — representing our Ecology and Earth Sciences zone"
+                loading="lazy" width="600" height="380"
+              />
+            </div>
             <div class="card-body">
-              <span class="card-tag tag--green">Ecology · Outdoor</span>
+              <span class="card-tag card-tag--nature">Ecology · Outdoor</span>
               <h3 class="card-title">Ecology & Earth Sciences</h3>
-              <p class="card-text">Living garden, mini-ecosystems, climate science with real-time sensors. Beautiful in any weather.</p>
+              <p class="card-text">Discover our living garden, observe mini-ecosystems, and learn about climate science through real-time sensors and interactive maps.</p>
               <a href="#" class="card-link">Learn more →</a>
             </div>
           </article>
+
           <article class="card" id="human-body">
-            <div class="card-media" style="background:linear-gradient(135deg,#fee2e2,#ef4444)"><span aria-hidden="true">🧠</span></div>
+            <div class="card-img">
+              <img
+                src="../images/test-tubes.jpg"
+                alt="Test tubes in a science laboratory — representing our Human Body exhibition"
+                loading="lazy" width="600" height="380"
+              />
+            </div>
             <div class="card-body">
-              <span class="card-tag tag--orange">Biology · Level 1</span>
+              <span class="card-tag card-tag--science">Biology · Level 1</span>
               <h3 class="card-title">The Human Body</h3>
-              <p class="card-text">Climb inside a giant model heart, explore the nervous system, discover the machine that is you.</p>
+              <p class="card-text">Climb inside a giant model of the human heart, explore the nervous system, and discover the remarkable machine that is your own body.</p>
               <a href="#" class="card-link">Learn more →</a>
             </div>
           </article>
+
           <article class="card" id="physics">
-            <div class="card-media" style="background:linear-gradient(135deg,#fef9c3,#f5c842)"><span aria-hidden="true">⚡</span></div>
+            <div class="card-img">
+              <img
+                src="../images/dino-milan.jpg"
+                alt="Large dinosaur skeleton on display in a museum hall"
+                loading="lazy" width="600" height="380"
+              />
+            </div>
             <div class="card-body">
-              <span class="card-tag tag--yellow">Physics · Level 2</span>
+              <span class="card-tag card-tag--kids">Physics · Level 2</span>
               <h3 class="card-title">Forces & Physics</h3>
-              <p class="card-text">Build bridges, launch projectiles, create lightning with our Van de Graaff generator.</p>
+              <p class="card-text">Build bridges, launch projectiles, create lightning with our Van de Graaff generator, and discover the invisible forces that shape our world.</p>
               <a href="#" class="card-link">Learn more →</a>
             </div>
           </article>
@@ -144,47 +209,106 @@
       </div>
     </section>
 
-    <!-- Gallery -->
-    <section class="section section--warm" aria-labelledby="gal-h">
-      <div class="wrap">
-        <div class="center" style="margin-bottom:2.5rem">
-          <div class="eyebrow">Gallery</div>
-          <h2 class="heading-xl" id="gal-h">See What Awaits</h2>
+    <!-- Gallery with real images -->
+    <section class="section section--alt" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:var(--space-lg)">
+          <p class="section-label">Gallery</p>
+          <h2 class="section-title" id="gallery-heading">See What Awaits You</h2>
         </div>
-        <div class="gallery" aria-label="Museum photo gallery">
-          <div class="gallery-cell wide" style="background:linear-gradient(135deg,#0d2b4b,#0a4a7a)" role="img" aria-label="Space exhibition"><span aria-hidden="true">🚀</span></div>
-          <div class="gallery-cell" style="background:linear-gradient(135deg,#312e81,#5b3af7)" role="img" aria-label="Robotics workshop"><span aria-hidden="true">🤖</span></div>
-          <div class="gallery-cell tall" style="background:linear-gradient(135deg,#064e3b,#16a34a)" role="img" aria-label="Evolution zone"><span aria-hidden="true">🦕</span></div>
-          <div class="gallery-cell" style="background:linear-gradient(135deg,#fef9c3,#f5c842)" role="img" aria-label="Physics demonstrations"><span aria-hidden="true">⚡</span></div>
-          <div class="gallery-cell" style="background:linear-gradient(135deg,#fee2e2,#ef4444)" role="img" aria-label="Human body exhibit"><span aria-hidden="true">🧠</span></div>
-          <div class="gallery-cell wide" style="background:linear-gradient(135deg,#dcfce7,#16a34a)" role="img" aria-label="Ecology garden"><span aria-hidden="true">🌿</span></div>
+        <div class="gallery-grid" aria-label="Photo gallery of museum exhibitions">
+          <div class="gallery-item wide">
+            <img
+              src="../images/hero-galaxy.jpg"
+              alt="Blue galaxy and night sky — our Cosmology exhibition"
+              loading="lazy" width="900" height="440"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="../images/coloured-tubes.jpg"
+              alt="Colourful liquids in test tubes in our science lab"
+              loading="lazy" width="440" height="220"
+            />
+          </div>
+          <div class="gallery-item tall">
+            <img
+              src="../images/trex-museum.jpg"
+              alt="T-rex dinosaur skeleton towering over visitors in a museum hall"
+              loading="lazy" width="440" height="460"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="../images/test-tubes.jpg"
+              alt="Rows of laboratory test tubes representing our hands-on science experiments"
+              loading="lazy" width="440" height="220"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="../images/fossil.jpg"
+              alt="Fossil cast of a prehistoric thunder bird from Queensland Australia"
+              loading="lazy" width="440" height="220"
+            />
+          </div>
+          <div class="gallery-item wide">
+            <img
+              src="../images/hero-exhibit.jpg"
+              alt="Visitors exploring an immersive interactive light installation science exhibit"
+              loading="lazy" width="900" height="440"
+            />
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="section section--dark" aria-labelledby="cta-h">
-      <div class="wrap center">
-        <div class="eyebrow" style="color:var(--yellow);justify-content:center">Ready?</div>
-        <h2 class="heading-xl" id="cta-h">Plan your visit today</h2>
-        <p class="lead" style="color:rgba(255,255,255,.6)">Book online and save up to 15%. Group and school discounts available.</p>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-          <a href="visit.html#tickets" class="btn btn-yellow">Buy Tickets</a>
-          <a href="visit.html" class="btn btn-secondary" style="border-color:rgba(255,255,255,.3);color:var(--white)">Plan Visit</a>
+    <section class="section section--dark" aria-labelledby="exhibitions-cta">
+      <div class="container text-center">
+        <h2 class="section-title" id="exhibitions-cta">Ready to explore?</h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,.7);margin-inline:auto">
+          Book your tickets online and save up to 15%. Group and school discounts available.
+        </p>
+        <div style="display:flex;gap:var(--space-sm);justify-content:center;flex-wrap:wrap">
+          <a href="visit.html#tickets" class="btn btn--primary">Buy Tickets</a>
+          <a href="visit.html" class="btn btn--white">Plan Your Visit</a>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer" aria-label="Site footer">
-    <div class="wrap">
+    <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand"><div style="font-family:var(--ff-display);font-weight:700;color:var(--white);margin-bottom:1rem">Community Science Museum</div><p>Inspiring the next generation of scientists since 1987.</p></div>
-        <div class="footer-col"><h3>Explore</h3><a href="exhibitions.html">Exhibitions</a><a href="events.html">Events</a><a href="visit.html">Plan a Visit</a><a href="get-involved.html">Get Involved</a></div>
-        <div class="footer-col"><h3>Visit Info</h3><a href="visit.html#hours">Opening Hours</a><a href="visit.html#tickets">Ticket Prices</a><a href="visit.html#access">Accessibility</a><a href="visit.html#getting-here">Getting Here</a></div>
-        <div class="footer-col"><h3>Connect</h3><a href="contact.html">Contact Us</a><a href="get-involved.html#volunteer">Volunteer</a><a href="get-involved.html#donate">Donate</a><a href="coming-soon.html">Press Room</a></div>
+        <div class="footer-brand">
+          <div class="logo-text" style="margin-bottom:var(--space-sm)">Curiosa</div>
+          <p>Inspiring the next generation of scientists, explorers, and innovators since 1987.</p>
+        </div>
+        <div class="footer-col"><h3>Explore</h3><ul>
+          <li><a href="exhibitions.html">Exhibitions</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="visit.html">Plan a Visit</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+        </ul></div>
+        <div class="footer-col"><h3>Visit Info</h3><ul>
+          <li><a href="visit.html#hours">Opening Hours</a></li>
+          <li><a href="visit.html#tickets">Ticket Prices</a></li>
+          <li><a href="visit.html#access">Accessibility</a></li>
+          <li><a href="visit.html#getting-here">Getting Here</a></li>
+        </ul></div>
+        <div class="footer-col"><h3>Connect</h3><ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+          <li><a href="get-involved.html#donate">Donate</a></li>
+          <li><a href="coming-soon.html">Press Room</a></li>
+        </ul></div>
       </div>
-      <div class="footer-bottom"><p>© 2025 Community Science Museum.</p><p><a href="coming-soon.html" style="color:inherit">Privacy</a> · <a href="coming-soon.html" style="color:inherit">Accessibility</a></p></div>
+      <div class="footer-bottom">
+        <p>© 2025 Curiosa Science Museum. All rights reserved.</p>
+        <p>Photos: <a href="https://unsplash.com" style="color:inherit">Unsplash</a> — free under the <a href="https://unsplash.com/license" style="color:inherit">Unsplash License</a></p>
+      </div>
     </div>
   </footer>
 </body>

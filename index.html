@@ -3,243 +3,238 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community Science Museum — Explore, Discover, Wonder</title>
-  <meta name="description" content="An award-winning interactive science museum for curious children aged 7–15 and their families. Space, robotics, ecology, and more await." />
+  <title>Curiosa Science Museum — Explore, Discover, Wonder</title>
+  <meta name="description" content="Welcome to the Curiosa Science Museum — an interactive science adventure for children aged 7–15 and families. Explore space, robotics, ecology, and more!" />
+  <link rel="icon" type="image/svg+xml" href="images/curiosa-icon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .hero {
+      position: relative;
+      background-image: url('images/hero-galaxy.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 20, 45, 0.72);
+      z-index: 0;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .card-img img, .feature-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .card-img { background:#1a3a5c; }
+    .feature-img { background:#0d2b4b; }
+    .hero-image-card img { width:100%; height:100%; object-fit:cover; }
+  </style>
 </head>
 <body>
-
-  <a class="skip" href="#main">Skip to main content</a>
-
-  <div class="ann-bar">
-    🎉 School holidays: <strong>Free entry for under-12s all of July!</strong> &nbsp;
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="info-strip" role="banner" aria-label="Announcement">
+    🎉 School holidays: <strong>Free entry for under-12s</strong> all of July! &nbsp;
     <a href="pages/visit.html">Plan your visit →</a>
   </div>
-
   <header class="site-header">
-    <input type="checkbox" id="menu-toggle" hidden />
-    <div class="wrap nav-inner">
-      <a href="index.html" class="logo" aria-label="Community Science Museum — home">
-        <div class="logo-mark" aria-hidden="true">🔭</div>
-        <div>Community<br><span>Science Museum</span></div>
+    <input type="checkbox" id="nav-checkbox" aria-hidden="true" />
+    <div class="container nav-wrapper">
+      <a href="index.html" class="site-logo" aria-label="Curiosa Science Museum — Home">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="images/curiosa-icon.svg" alt="" width="44" height="44" />
+        </div>
+        <div class="logo-text">Curiosa<span>Science Museum</span></div>
       </a>
       <nav aria-label="Main navigation">
-        <ul class="nav-list">
+        <ul class="nav-links">
           <li><a href="index.html" class="active" aria-current="page">Home</a></li>
           <li><a href="pages/exhibitions.html">Exhibitions</a></li>
           <li><a href="pages/events.html">Events</a></li>
-          <li><a href="pages/visit.html">Visit</a></li>
+          <li><a href="pages/visit.html">Visit Us</a></li>
           <li><a href="pages/get-involved.html">Get Involved</a></li>
           <li><a href="pages/contact.html">Contact</a></li>
         </ul>
       </nav>
-      <a href="pages/visit.html" class="nav-cta">Plan Your Visit</a>
-      <label class="hamburger-label" for="menu-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
+      <label class="nav-toggle" for="nav-checkbox" aria-label="Toggle menu">
+        <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
       </label>
     </div>
   </header>
 
-  <main id="main">
+  <main id="main-content">
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-h">
-      <div class="hero-bg-text" aria-hidden="true">SCIENCE</div>
-      <div class="hero-left">
-        <div class="hero-eyebrow">Open 7 days a week</div>
-        <h1 id="hero-h">
-          Come <em>explore</em> the wonders of science.
-        </h1>
-        <p class="hero-desc">
-          An interactive adventure for curious minds aged 7–15 and families who
-          love to discover, experiment, and wonder together.
-        </p>
-        <div class="hero-btns">
-          <a href="pages/visit.html" class="btn-hero-primary">Plan Your Visit 🗓️</a>
-          <a href="pages/exhibitions.html" class="btn-hero-ghost">Explore Exhibitions →</a>
-        </div>
-      </div>
-      <div class="hero-right" aria-hidden="true">
-        <div class="hero-panel">
-          <span>🚀</span>
-          <div class="hero-panel-label">Cosmology Zone</div>
-        </div>
-        <div class="hero-panel">
-          <span>🤖</span>
-          <div class="hero-panel-label">Robotics Lab</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STATS STRIP -->
-    <section class="section--sm" aria-label="Museum at a glance">
-      <div class="wrap">
-        <div class="stats-strip">
-          <div class="stat-item">
-            <span class="stat-num">14</span>
-            <span class="stat-label">Interactive zones</span>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">Open 7 days a week</div>
+          <h1 id="hero-heading">Come <em>explore</em> the wonders of science!</h1>
+          <p class="hero-desc">An interactive science adventure for curious minds aged 7–15 and families who love to discover together.</p>
+          <div class="hero-actions">
+            <a href="pages/visit.html" class="btn btn--primary">Plan Your Visit 🗓️</a>
+            <a href="pages/exhibitions.html" class="btn btn--white">See Exhibitions →</a>
           </div>
-          <div class="stat-item">
-            <span class="stat-num">1987</span>
-            <span class="stat-label">Inspiring since</span>
+        </div>
+        <div class="hero-image-wrap" aria-hidden="true">
+          <div class="hero-image-card">
+            <img
+              src="images/hero-exhibit.jpg"
+              alt="Visitors exploring an immersive interactive science light installation"
+              loading="eager" width="700" height="520"
+            />
           </div>
-          <div class="stat-item">
-            <span class="stat-num">200k+</span>
-            <span class="stat-label">Annual visitors</span>
+          <div class="hero-stat hero-stat--1">
+            <span class="hero-stat-num">14</span>
+            <span class="hero-stat-label">Interactive Zones</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-num">Free</span>
-            <span class="stat-label">Under 3s always free</span>
+          <div class="hero-stat hero-stat--2">
+            <span class="hero-stat-num">Free!</span>
+            <span class="hero-stat-label">Kids under 3</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED EXHIBITIONS -->
-    <section class="section" aria-labelledby="exh-h">
-      <div class="wrap">
-        <div class="center" style="margin-bottom:3rem">
-          <div class="eyebrow">Now on</div>
-          <h2 class="heading-xl" id="exh-h">Featured Exhibitions</h2>
-          <p class="lead">From the outer edges of the universe to the incredible machines inside your own body.</p>
+    <section class="section" aria-labelledby="highlights-heading">
+      <div class="container">
+        <p class="section-label">Why visit us?</p>
+        <h2 class="section-title" id="highlights-heading">Science is for everyone</h2>
+        <div class="grid-4">
+          <div class="icon-card"><div class="icon-card-icon" aria-hidden="true">🔬</div><h3>Hands-On Labs</h3><p>Touch, build and experiment in our interactive science stations.</p></div>
+          <div class="icon-card"><div class="icon-card-icon" aria-hidden="true">🌌</div><h3>Planetarium</h3><p>Journey through the cosmos in our 120-seat digital dome.</p></div>
+          <div class="icon-card"><div class="icon-card-icon" aria-hidden="true">🤖</div><h3>Robotics Arena</h3><p>Programme and race real robots every weekend.</p></div>
+          <div class="icon-card"><div class="icon-card-icon" aria-hidden="true">🌿</div><h3>Nature Trail</h3><p>Explore our living ecosystem garden and wildlife habitats.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="exhibitions-heading">
+      <div class="container">
+        <div class="text-center">
+          <p class="section-label">Now on</p>
+          <h2 class="section-title" id="exhibitions-heading">Featured Exhibitions</h2>
+          <p class="section-subtitle">From the mysteries of deep space to the incredible world inside a single cell.</p>
         </div>
         <div class="grid-3">
           <article class="card">
-            <div class="card-media" style="background:linear-gradient(135deg,#0d2b4b,#0a4a7a)"><span aria-hidden="true">🚀</span></div>
+            <div class="card-img">
+              <img src="images/hero-galaxy.jpg"
+                   alt="Blue galaxy and night sky — the Cosmology exhibition" loading="lazy" width="600" height="380"/>
+            </div>
             <div class="card-body">
-              <span class="card-tag tag--violet">Space</span>
+              <span class="card-tag card-tag--space">Space</span>
               <h3 class="card-title">Cosmology: The Big Picture</h3>
-              <p class="card-text">Billions of light-years in one room. Touch a moon rock. Chart your own constellation. Nightly planetarium shows.</p>
-              <a href="pages/exhibitions.html#cosmology" class="card-link">Explore →</a>
+              <p class="card-text">Travel billions of light-years. Touch a moon rock. Chart your own constellation. Daily planetarium shows.</p>
+              <a href="pages/exhibitions.html#cosmology" class="card-link">Explore exhibition →</a>
             </div>
           </article>
           <article class="card">
-            <div class="card-media" style="background:linear-gradient(135deg,#064e3b,#0ea5a0)"><span aria-hidden="true">🦕</span></div>
+            <div class="card-img">
+              <img src="images/trex-museum.jpg"
+                   alt="T-rex skeleton on display in a natural history museum" loading="lazy" width="600" height="380"/>
+            </div>
             <div class="card-body">
-              <span class="card-tag tag--green">Biology</span>
+              <span class="card-tag card-tag--science">Biology</span>
               <h3 class="card-title">Evolution: Life Through Time</h3>
-              <p class="card-text">Walk 3.5 billion years. Meet animatronic dinosaurs, excavate fossils, and extract real DNA.</p>
-              <a href="pages/exhibitions.html#evolution" class="card-link">Explore →</a>
+              <p class="card-text">Walk 3.5 billion years of life. Meet animatronic dinosaurs and discover the science of evolution.</p>
+              <a href="pages/exhibitions.html#evolution" class="card-link">Explore exhibition →</a>
             </div>
           </article>
           <article class="card">
-            <div class="card-media" style="background:linear-gradient(135deg,#312e81,#5b3af7)"><span aria-hidden="true">🤖</span></div>
+            <div class="card-img">
+              <img src="images/test-tubes.jpg"
+                   alt="Test tubes in a science laboratory" loading="lazy" width="600" height="380"/>
+            </div>
             <div class="card-body">
-              <span class="card-tag tag--violet">Technology</span>
+              <span class="card-tag card-tag--tech">Technology</span>
               <h3 class="card-title">Robotics & AI Lab</h3>
-              <p class="card-text">Programme robots, build AI games, and race on our track. Weekend workshops for all ages.</p>
-              <a href="pages/exhibitions.html#robotics" class="card-link">Explore →</a>
+              <p class="card-text">Code a robot, design an AI game, and discover how machine learning shapes the world around us.</p>
+              <a href="pages/exhibitions.html#robotics" class="card-link">Explore exhibition →</a>
             </div>
           </article>
         </div>
-        <div style="text-align:center;margin-top:2.5rem">
-          <a href="pages/exhibitions.html" class="btn btn-secondary">All exhibitions</a>
+        <div style="text-align:center;margin-top:var(--space-lg)">
+          <a href="pages/exhibitions.html" class="btn btn--secondary">View all exhibitions</a>
         </div>
       </div>
     </section>
 
-    <!-- YOUNG STARS SPLIT -->
-    <section class="section section--warm" aria-labelledby="ys-h">
-      <div class="wrap">
-        <div class="split">
-          <div class="feature-img noise" style="background:linear-gradient(135deg,#f5c842,#f4742b)">
-            <span aria-hidden="true">🌟</span>
+    <section class="section" aria-labelledby="youngstars-heading">
+      <div class="container">
+        <div class="feature-split">
+          <div class="feature-img">
+            <img src="images/science-lab.jpg"
+                 alt="Scientists conducting hands-on chemistry experiments in a laboratory" loading="lazy" width="700" height="560"/>
           </div>
           <div>
-            <div class="eyebrow">For families</div>
-            <h2 class="heading-lg" id="ys-h">Young Stars Membership</h2>
-            <p style="color:var(--ink-light);margin-bottom:1.5rem">Unlimited visits all year. Science passport for each child. Monthly activity packs. Priority workshop booking. Join 12,000+ families who are always curious.</p>
-            <ul style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem">
-              <li style="display:flex;gap:.6em"><span style="color:var(--teal);font-weight:700">✓</span> Unlimited entry for up to 2 adults + 4 children</li>
-              <li style="display:flex;gap:.6em"><span style="color:var(--teal);font-weight:700">✓</span> Monthly science activity pack by post</li>
-              <li style="display:flex;gap:.6em"><span style="color:var(--teal);font-weight:700">✓</span> Priority access to holiday workshops</li>
-              <li style="display:flex;gap:.6em"><span style="color:var(--teal);font-weight:700">✓</span> 15% discount on café &amp; gift shop</li>
+            <p class="section-label">For families</p>
+            <h2 class="section-title" id="youngstars-heading">Young Stars Programme</h2>
+            <p style="color:var(--clr-mid);margin-bottom:var(--space-md)">Unlimited visits, priority workshop booking, and a personalised science passport for each child. Perfect for curious kids who want to go deeper.</p>
+            <ul style="margin-bottom:var(--space-md);display:flex;flex-direction:column;gap:0.5em">
+              <li style="display:flex;gap:0.6em"><span style="color:var(--clr-accent2)">✓</span> Unlimited annual entry for the whole family</li>
+              <li style="display:flex;gap:0.6em"><span style="color:var(--clr-accent2)">✓</span> Monthly science activity pack delivered to your door</li>
+              <li style="display:flex;gap:0.6em"><span style="color:var(--clr-accent2)">✓</span> Priority access to holiday workshops</li>
+              <li style="display:flex;gap:0.6em"><span style="color:var(--clr-accent2)">✓</span> Discounts in our café and gift shop</li>
             </ul>
-            <a href="pages/get-involved.html#membership" class="btn btn-primary">Join from £110/year</a>
+            <a href="pages/get-involved.html#membership" class="btn btn--primary">Join Young Stars 🌟</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- UPCOMING EVENTS -->
-    <section class="section" aria-labelledby="ev-h">
-      <div class="wrap">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
-          <div>
-            <div class="eyebrow">What's on</div>
-            <h2 class="heading-xl" id="ev-h" style="margin-bottom:0">Upcoming Events</h2>
-          </div>
-          <a href="pages/events.html" class="btn btn-secondary">Full calendar</a>
+    <section class="section section--alt" aria-labelledby="events-heading">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-lg)">
+          <div><p class="section-label">What's on</p><h2 class="section-title" id="events-heading" style="margin-bottom:0">Upcoming Events</h2></div>
+          <a href="pages/events.html" class="btn btn--secondary">Full calendar</a>
         </div>
-        <div style="display:flex;flex-direction:column;gap:.75rem">
-          <div class="event-row">
-            <div class="event-date-box" aria-label="12 July">
-              <div class="event-mo">Jul</div>
-              <div class="event-dy">12</div>
-            </div>
-            <div>
-              <div class="event-title">Rocket Science Workshop</div>
-              <div class="event-sub">🕙 10:00–12:00 · Lab A · Ages 8–14 · £10</div>
-            </div>
-            <span class="event-chip">Workshop</span>
-            <a href="pages/coming-soon.html" class="btn btn-orange btn-sm">Book</a>
+        <div style="display:flex;flex-direction:column;gap:var(--space-sm)">
+          <div class="event-item">
+            <div class="event-date" aria-label="12 July"><div class="event-month">Jul</div><div class="event-day">12</div></div>
+            <div><div class="event-title">Rocket Science Workshop</div><div class="event-meta">🕙 10:00–12:00 · Lab A · Ages 8–14</div></div>
+            <span class="event-tag">Workshop</span>
+            <a href="pages/coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
           </div>
-          <div class="event-row">
-            <div class="event-date-box" aria-label="19 July">
-              <div class="event-mo">Jul</div>
-              <div class="event-dy">19</div>
-            </div>
-            <div>
-              <div class="event-title">Night at the Planetarium: Summer Skies</div>
-              <div class="event-sub">🕖 18:30–20:00 · Dome Theatre · All ages · £12</div>
-            </div>
-            <span class="event-chip">Special Evening</span>
-            <a href="pages/coming-soon.html" class="btn btn-orange btn-sm">Book</a>
+          <div class="event-item">
+            <div class="event-date" aria-label="19 July"><div class="event-month">Jul</div><div class="event-day">19</div></div>
+            <div><div class="event-title">Night at the Planetarium: Summer Skies</div><div class="event-meta">🕖 18:30–20:00 · Dome Theatre · All ages</div></div>
+            <span class="event-tag">Special Event</span>
+            <a href="pages/coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
           </div>
-          <div class="event-row">
-            <div class="event-date-box" aria-label="26 July">
-              <div class="event-mo">Jul</div>
-              <div class="event-dy">26</div>
-            </div>
-            <div>
-              <div class="event-title">Junior Robotics Challenge</div>
-              <div class="event-sub">🕙 10:00–16:00 · Robotics Arena · Ages 9–15 · £15</div>
-            </div>
-            <span class="event-chip">Competition</span>
-            <a href="pages/coming-soon.html" class="btn btn-orange btn-sm">Book</a>
+          <div class="event-item">
+            <div class="event-date" aria-label="26 July"><div class="event-month">Jul</div><div class="event-day">26</div></div>
+            <div><div class="event-title">Junior Robotics Challenge</div><div class="event-meta">🕙 10:00–16:00 · Robotics Arena · Ages 9–15</div></div>
+            <span class="event-tag">Competition</span>
+            <a href="pages/coming-soon.html" class="btn btn--accent" style="font-size:var(--fs-sm);padding:0.5em 1em">Book</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SCHOOLS SPLIT -->
-    <section class="section section--dark" aria-labelledby="sch-h">
-      <div class="wrap">
-        <div class="split rev">
-          <div class="feature-img" style="background:linear-gradient(135deg,#0d2b4b,#0ea5a0)">
-            <span aria-hidden="true">📚</span>
+    <section class="section" aria-labelledby="schools-heading">
+      <div class="container">
+        <div class="feature-split reverse">
+          <div class="feature-img">
+            <img src="images/dino-skeleton.jpg"
+                 alt="School group viewing a large dinosaur skeleton exhibit in a natural history museum" loading="lazy" width="700" height="560"/>
           </div>
           <div>
-            <div class="eyebrow" style="color:var(--yellow)">Educators</div>
-            <h2 class="heading-lg" id="sch-h">School Group Visits</h2>
-            <p style="color:rgba(255,255,255,.7);margin-bottom:1.5rem">Curriculum-linked STEM programmes for KS1–KS4. From just £8 per pupil. Free entry for accompanying staff. Teacher resource packs included.</p>
-            <a href="pages/get-involved.html#schools" class="btn btn-yellow">Book a school visit</a>
+            <p class="section-label">Educators</p>
+            <h2 class="section-title" id="schools-heading">School Group Visits</h2>
+            <p style="color:var(--clr-mid);margin-bottom:var(--space-md)">Curriculum-linked experiences for primary and secondary schools. Our educators create hands-on programmes tailored to your class, from biology and chemistry to physics and computing.</p>
+            <a href="pages/get-involved.html#schools" class="btn btn--secondary">Book a school visit</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- NEWSLETTER -->
-    <div class="newsletter-band" aria-labelledby="nl-h">
-      <div class="wrap newsletter-inner">
-        <div>
-          <h2 id="nl-h">Stay curious — get our newsletter!</h2>
+    <div class="newsletter-band" aria-labelledby="newsletter-heading">
+      <div class="container newsletter-inner">
+        <div class="newsletter-text">
+          <h2 id="newsletter-heading">Stay curious — get our newsletter!</h2>
           <p>Monthly science news, event previews, and exclusive family offers.</p>
         </div>
-        <div class="newsletter-form">
-          <label for="nl-email" class="sr-only">Email address</label>
-          <input type="email" id="nl-email" class="form-input" placeholder="your@email.com" />
-          <a href="pages/coming-soon.html" class="btn btn-primary">Subscribe</a>
+        <div class="newsletter-form" role="form" aria-label="Newsletter signup">
+          <label for="email-signup" style="position:absolute;left:-9999px">Email address</label>
+          <input type="email" id="email-signup" class="form-input" placeholder="your@email.com" />
+          <a href="pages/coming-soon.html" class="btn btn--primary">Subscribe →</a>
         </div>
       </div>
     </div>
@@ -247,40 +242,36 @@
   </main>
 
   <footer class="site-footer" aria-label="Site footer">
-    <div class="wrap">
+    <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div style="font-family:var(--ff-display);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:1rem">Community Science Museum</div>
-          <p>Inspiring the next generation of scientists, explorers and innovators since 1987.</p>
+          <div class="logo-text" style="margin-bottom:var(--space-sm)">Curiosa</div>
+          <p>Inspiring the next generation of scientists, explorers, and innovators since 1987.</p>
         </div>
-        <div class="footer-col">
-          <h3>Explore</h3>
-          <a href="pages/exhibitions.html">Exhibitions</a>
-          <a href="pages/events.html">Events</a>
-          <a href="pages/visit.html">Plan a Visit</a>
-          <a href="pages/get-involved.html">Get Involved</a>
-        </div>
-        <div class="footer-col">
-          <h3>Visit Info</h3>
-          <a href="pages/visit.html#hours">Opening Hours</a>
-          <a href="pages/visit.html#tickets">Ticket Prices</a>
-          <a href="pages/visit.html#access">Accessibility</a>
-          <a href="pages/visit.html#getting-here">Getting Here</a>
-        </div>
-        <div class="footer-col">
-          <h3>Connect</h3>
-          <a href="pages/contact.html">Contact Us</a>
-          <a href="pages/get-involved.html#volunteer">Volunteer</a>
-          <a href="pages/get-involved.html#donate">Donate</a>
-          <a href="pages/coming-soon.html">Press Room</a>
-        </div>
+        <div class="footer-col"><h3>Explore</h3><ul>
+          <li><a href="pages/exhibitions.html">Exhibitions</a></li>
+          <li><a href="pages/events.html">Events</a></li>
+          <li><a href="pages/visit.html">Plan a Visit</a></li>
+          <li><a href="pages/get-involved.html">Get Involved</a></li>
+        </ul></div>
+        <div class="footer-col"><h3>Visit Info</h3><ul>
+          <li><a href="pages/visit.html#hours">Opening Hours</a></li>
+          <li><a href="pages/visit.html#tickets">Ticket Prices</a></li>
+          <li><a href="pages/visit.html#access">Accessibility</a></li>
+          <li><a href="pages/visit.html#getting-here">Getting Here</a></li>
+        </ul></div>
+        <div class="footer-col"><h3>Connect</h3><ul>
+          <li><a href="pages/contact.html">Contact Us</a></li>
+          <li><a href="pages/get-involved.html#volunteer">Volunteer</a></li>
+          <li><a href="pages/get-involved.html#donate">Donate</a></li>
+          <li><a href="pages/coming-soon.html">Press Room</a></li>
+        </ul></div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 Community Science Museum. All rights reserved.</p>
-        <p><a href="pages/coming-soon.html" style="color:inherit">Privacy Policy</a> · <a href="pages/coming-soon.html" style="color:inherit">Accessibility</a></p>
+        <p>© 2025 Curiosa Science Museum. All rights reserved.</p>
+        <p>Photos: <a href="https://unsplash.com" style="color:inherit">Unsplash</a> — free under the <a href="https://unsplash.com/license" style="color:inherit">Unsplash License</a></p>
       </div>
     </div>
   </footer>
-
 </body>
 </html>

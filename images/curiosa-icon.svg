@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" role="img" aria-label="Curiosa Science Museum icon">
+  <title>Curiosa Science Museum</title>
+  <circle cx="28" cy="28" r="28" fill="#1a3a5c"/>
+  <ellipse cx="28" cy="28" rx="25" ry="10" fill="none" stroke="#f4a935" stroke-width="2.2" transform="rotate(-32 28 28)"/>
+  <ellipse cx="28" cy="28" rx="25" ry="10" fill="none" stroke="#2db89e" stroke-width="1.8" transform="rotate(90 28 28)"/>
+  <circle cx="28" cy="3.5" r="4" fill="#f4a935"/>
+  <circle cx="51" cy="40" r="3" fill="#2db89e"/>
+  <circle cx="28" cy="28" r="6.5" fill="#ffffff"/>
+  <circle cx="28" cy="28" r="3.2" fill="#1a3a5c"/>
+</svg>

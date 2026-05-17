@@ -1,0 +1,259 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+.gh{font-size:13px;color:var(--color-text-primary);background:var(--color-background-tertiary);border-radius:var(--border-radius-lg);padding:0;overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+
+.gh-topbar{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.gh-repo{font-size:12px;color:var(--color-text-tertiary)}
+.gh-repo span{color:var(--color-text-info);font-weight:500}
+.gh-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.gh-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:0 16px}
+.gh-tab{padding:8px 14px;font-size:12px;cursor:pointer;border-bottom:2px solid transparent;color:var(--color-text-secondary);display:flex;align-items:center;gap:5px}
+.gh-tab.active{border-bottom-color:var(--color-border-info);color:var(--color-text-primary);font-weight:500}
+.gh-tab i{font-size:14px}
+
+.gh-toolbar{background:var(--color-background-primary);padding:8px 16px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.gh-filter{font-size:12px;color:var(--color-text-secondary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:5px 10px;display:flex;align-items:center;gap:5px;cursor:pointer}
+.gh-filter i{font-size:13px}
+.gh-sprint-badge{font-size:11px;font-weight:500;background:var(--color-background-info);color:var(--color-text-info);padding:3px 10px;border-radius:var(--border-radius-md);margin-left:auto}
+
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px;min-height:600px;align-items:start}
+
+.col{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:10px;display:flex;flex-direction:column;gap:7px}
+.col-head{display:flex;align-items:center;gap:7px;padding:2px 2px 6px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:2px}
+.col-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.col-name{font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.col-count{font-size:11px;color:var(--color-text-tertiary);background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:999px;padding:1px 7px;margin-left:auto}
+
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:9px 10px;cursor:pointer;transition:border-color .15s;display:flex;flex-direction:column;gap:5px}
+.card:hover{border-color:var(--color-border-secondary)}
+.card.dragging{opacity:.5}
+
+.card-title{font-size:12px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+.card-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.tag-plan  {background:var(--color-background-info);   color:var(--color-text-info)}
+.tag-html  {background:var(--color-background-danger); color:var(--color-text-danger)}
+.tag-css   {background:var(--color-background-success);color:var(--color-text-success)}
+.tag-a11y  {background:var(--color-background-warning);color:var(--color-text-warning)}
+.tag-test  {background:var(--color-background-success);color:var(--color-text-success)}
+.tag-deploy{background:var(--color-background-info);   color:var(--color-text-info)}
+.tag-design{background:var(--color-background-info);   color:var(--color-text-info)}
+
+.pri{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-left:auto}
+.pri-high{background:#E24B4A}
+.pri-med {background:#EF9F27}
+.pri-low {background:#639922}
+
+.issue-num{font-size:10px;color:var(--color-text-tertiary);font-family:var(--font-mono)}
+
+.add-card{font-size:12px;color:var(--color-text-tertiary);padding:6px 4px;cursor:pointer;display:flex;align-items:center;gap:5px;border-radius:var(--border-radius-md);transition:background .15s}
+.add-card:hover{background:var(--color-background-primary);color:var(--color-text-secondary)}
+
+.sprint-tabs{display:flex;gap:6px;padding:10px 16px 0;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.sprint-tab{font-size:11px;font-weight:500;padding:5px 12px;border-radius:var(--border-radius-md) var(--border-radius-md) 0 0;cursor:pointer;border:0.5px solid var(--color-border-tertiary);border-bottom:none;color:var(--color-text-secondary);background:var(--color-background-secondary)}
+.sprint-tab.active{background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-secondary)}
+
+.milestone-bar{display:flex;align-items:center;gap:10px;padding:8px 16px;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:11px}
+.ms-label{color:var(--color-text-secondary)}
+.ms-track{flex:1;height:4px;background:var(--color-background-secondary);border-radius:2px;overflow:hidden}
+.ms-fill{height:100%;border-radius:2px;background:var(--color-background-success)}
+.ms-pct{color:var(--color-text-success);font-weight:500;min-width:28px;text-align:right}
+.ms-date{color:var(--color-text-tertiary);margin-left:4px}
+</style>
+
+<h2 class="sr-only">Curiosa Science Museum — GitHub Projects kanban board with 4 columns: Backlog, In progress, In review, and Done. 25 issues across 3 sprints.</h2>
+
+<div class="gh" role="main">
+
+  <div class="gh-topbar">
+    <div class="gh-repo"><i class="ti ti-brand-github" style="font-size:15px;vertical-align:-2px" aria-hidden="true"></i> <span>siri-jansson</span> / curiosa-science-museum</div>
+    <div class="gh-title">SP1 — Curiosa Science Museum</div>
+  </div>
+
+  <div class="gh-tabs" role="tablist">
+    <div class="gh-tab active" role="tab" aria-selected="true"><i class="ti ti-layout-kanban" aria-hidden="true"></i> Board</div>
+    <div class="gh-tab" role="tab"><i class="ti ti-list" aria-hidden="true"></i> Backlog</div>
+    <div class="gh-tab" role="tab"><i class="ti ti-chart-bar" aria-hidden="true"></i> Insights</div>
+    <div class="gh-tab" role="tab"><i class="ti ti-settings" aria-hidden="true"></i> Settings</div>
+  </div>
+
+  <div class="sprint-tabs">
+    <div class="sprint-tab" id="tab-1" onclick="setSprint(1)">Sprint 1 — Planning</div>
+    <div class="sprint-tab active" id="tab-2" onclick="setSprint(2)">Sprint 2 — Build</div>
+    <div class="sprint-tab" id="tab-3" onclick="setSprint(3)">Sprint 3 — Polish</div>
+    <div class="sprint-tab" id="tab-all" onclick="setSprint(0)">All sprints</div>
+  </div>
+
+  <div class="milestone-bar">
+    <span class="ms-label" id="ms-label">Sprint 2 — Build all pages</span>
+    <div class="ms-track"><div class="ms-fill" id="ms-fill" style="width:71%"></div></div>
+    <span class="ms-pct" id="ms-pct">71%</span>
+    <span class="ms-date" id="ms-date">Due: Week 2</span>
+  </div>
+
+  <div class="gh-toolbar">
+    <div class="gh-filter"><i class="ti ti-filter" aria-hidden="true"></i> Filter</div>
+    <div class="gh-filter"><i class="ti ti-user" aria-hidden="true"></i> Assignee: Siri Jansson</div>
+    <div class="gh-filter"><i class="ti ti-tag" aria-hidden="true"></i> Label</div>
+    <div class="gh-sprint-badge" id="sprint-badge">Sprint 2 of 3</div>
+  </div>
+
+  <div class="board" id="board" role="region" aria-label="Kanban board columns">
+
+    <div class="col" id="col-backlog" ondragover="ev.preventDefault()" ondrop="drop(event,'backlog')">
+      <div class="col-head">
+        <div class="col-dot" style="background:#888780"></div>
+        <div class="col-name">Backlog</div>
+        <div class="col-count" id="cnt-backlog">0</div>
+      </div>
+    </div>
+
+    <div class="col" id="col-inprogress" ondragover="ev.preventDefault()" ondrop="drop(event,'inprogress')">
+      <div class="col-head">
+        <div class="col-dot" style="background:#378ADD"></div>
+        <div class="col-name">In progress</div>
+        <div class="col-count" id="cnt-inprogress">0</div>
+      </div>
+    </div>
+
+    <div class="col" id="col-review" ondragover="ev.preventDefault()" ondrop="drop(event,'review')">
+      <div class="col-head">
+        <div class="col-dot" style="background:#EF9F27"></div>
+        <div class="col-name">In review</div>
+        <div class="col-count" id="cnt-review">0</div>
+      </div>
+    </div>
+
+    <div class="col" id="col-done" ondragover="ev.preventDefault()" ondrop="drop(event,'done')">
+      <div class="col-head">
+        <div class="col-dot" style="background:#639922"></div>
+        <div class="col-name">Done</div>
+        <div class="col-count" id="cnt-done">0</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+var issues = [
+  {id:1,  num:'#1',  sprint:1, col:'done',       pri:'high', tags:['plan'],   title:'Set up GitHub repository and Projects board'},
+  {id:2,  num:'#2',  sprint:1, col:'done',       pri:'high', tags:['plan'],   title:'Define site map and information architecture'},
+  {id:3,  num:'#3',  sprint:1, col:'done',       pri:'high', tags:['design'], title:'Create lo-fi wireframes — desktop and mobile'},
+  {id:4,  num:'#4',  sprint:1, col:'done',       pri:'high', tags:['design'], title:'Define colour tokens and typography scale'},
+  {id:5,  num:'#5',  sprint:1, col:'done',       pri:'high', tags:['design'], title:'Build Figma hi-fi prototype (desktop + mobile)'},
+  {id:6,  num:'#6',  sprint:1, col:'done',       pri:'med',  tags:['plan'],   title:'Write README.md with project overview'},
+  {id:7,  num:'#7',  sprint:1, col:'done',       pri:'high', tags:['design'], title:'Design Curiosa logo and icon mark'},
+  {id:8,  num:'#8',  sprint:2, col:'done',       pri:'high', tags:['css'],    title:'Build shared styles.css with CSS custom properties'},
+  {id:9,  num:'#9',  sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Build index.html — home page'},
+  {id:10, num:'#10', sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Build exhibitions.html — all 6 zones'},
+  {id:11, num:'#11', sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Build events.html — calendar and filters'},
+  {id:12, num:'#12', sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Build visit.html — hours, tickets, access, map'},
+  {id:13, num:'#13', sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Build get-involved.html — membership and schools'},
+  {id:14, num:'#14', sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Build contact.html — accessible form'},
+  {id:15, num:'#15', sprint:2, col:'done',       pri:'med',  tags:['html'],   title:'Build coming-soon.html — JS placeholder page'},
+  {id:16, num:'#16', sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Build sparky-mascot.html — animated SVG mascot'},
+  {id:17, num:'#17', sprint:2, col:'done',       pri:'high', tags:['html'],   title:'Implement Curiosa branding across all pages'},
+  {id:18, num:'#18', sprint:2, col:'inprogress', pri:'high', tags:['css'],    title:'Implement responsive navigation — mobile hamburger'},
+  {id:19, num:'#19', sprint:2, col:'inprogress', pri:'med',  tags:['html'],   title:'Source and integrate free Unsplash images'},
+  {id:20, num:'#20', sprint:3, col:'backlog',    pri:'high', tags:['a11y'],   title:'WCAG audit — contrast, alt text, focus states'},
+  {id:21, num:'#21', sprint:3, col:'backlog',    pri:'high', tags:['test'],   title:'Validate all HTML with W3C validator'},
+  {id:22, num:'#22', sprint:3, col:'backlog',    pri:'high', tags:['test'],   title:'Responsive test — 375px, 768px, 1440px'},
+  {id:23, num:'#23', sprint:3, col:'backlog',    pri:'high', tags:['test'],   title:'Cross-browser test: Chrome, Firefox, Safari, Edge'},
+  {id:24, num:'#24', sprint:3, col:'backlog',    pri:'high', tags:['test'],   title:'Compress all images to under 200KB'},
+  {id:25, num:'#25', sprint:3, col:'backlog',    pri:'high', tags:['deploy'], title:'Deploy site to GitHub Pages and verify live URL'},
+];
+
+var currentSprint = 2;
+var dragging = null;
+
+var sprintMeta = {
+  0: {label:'All sprints', pct:64, date:'3 weeks'},
+  1: {label:'Sprint 1 — Planning & design', pct:100, date:'Week 1 — complete'},
+  2: {label:'Sprint 2 — Build all pages', pct:71, date:'Due: Week 2'},
+  3: {label:'Sprint 3 — Polish & submit', pct:0, date:'Due: Week 3'},
+};
+
+function makeTags(tags) {
+  return tags.map(function(t){
+    return '<span class="tag tag-'+t+'">'+t+'</span>';
+  }).join('');
+}
+
+function makePri(p) {
+  return '<div class="pri pri-'+p+'" title="Priority: '+p+'" aria-label="Priority '+p+'"></div>';
+}
+
+function makeCard(issue) {
+  var d = document.createElement('div');
+  d.className = 'card';
+  d.id = 'card-'+issue.id;
+  d.setAttribute('draggable','true');
+  d.setAttribute('role','article');
+  d.setAttribute('aria-label', issue.title);
+  d.innerHTML =
+    '<div class="issue-num">'+issue.num+'</div>'+
+    '<div class="card-title">'+issue.title+'</div>'+
+    '<div class="card-meta">'+makeTags(issue.tags)+makePri(issue.pri)+'</div>';
+  d.addEventListener('dragstart', function(e){
+    dragging = issue.id;
+    setTimeout(function(){d.classList.add('dragging');},0);
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  d.addEventListener('dragend', function(){
+    d.classList.remove('dragging');
+    dragging = null;
+  });
+  return d;
+}
+
+function renderBoard(sprint) {
+  var cols = {backlog:[], inprogress:[], review:[], done:[]};
+  issues.forEach(function(iss){
+    if(sprint === 0 || iss.sprint === sprint){
+      if(cols[iss.col]) cols[iss.col].push(iss);
+    }
+  });
+  ['backlog','inprogress','review','done'].forEach(function(col){
+    var container = document.getElementById('col-'+col);
+    var head = container.querySelector('.col-head');
+    while(container.children.length > 1) container.removeChild(container.lastChild);
+    cols[col].forEach(function(iss){ container.appendChild(makeCard(iss)); });
+    document.getElementById('cnt-'+col).textContent = cols[col].length;
+    var addBtn = document.createElement('div');
+    addBtn.className = 'add-card';
+    addBtn.innerHTML = '<i class="ti ti-plus" style="font-size:13px" aria-hidden="true"></i> Add item';
+    container.appendChild(addBtn);
+  });
+}
+
+function setSprint(n) {
+  currentSprint = n;
+  document.querySelectorAll('.sprint-tab').forEach(function(t){ t.classList.remove('active'); });
+  var activeId = n === 0 ? 'tab-all' : 'tab-'+n;
+  document.getElementById(activeId).classList.add('active');
+  var meta = sprintMeta[n];
+  document.getElementById('ms-label').textContent = meta.label;
+  document.getElementById('ms-fill').style.width = meta.pct+'%';
+  document.getElementById('ms-pct').textContent = meta.pct+'%';
+  document.getElementById('ms-date').textContent = meta.date;
+  document.getElementById('sprint-badge').textContent = n === 0 ? 'All sprints' : 'Sprint '+n+' of 3';
+  renderBoard(n);
+}
+
+function drop(ev, targetCol) {
+  ev.preventDefault();
+  if(dragging === null) return;
+  var iss = issues.find(function(i){ return i.id === dragging; });
+  if(iss) {
+    iss.col = targetCol;
+    renderBoard(currentSprint);
+  }
+}
+
+setSprint(2);
+</script>
